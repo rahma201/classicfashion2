@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Classic Fashion"
+version = "1.0.0"
+id = "artifacts/classic-fashion"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22277
+
+[services.development]
+run = "pnpm --filter @workspace/classic-fashion run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/classic-fashion", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/classic-fashion/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22277"
+BASE_PATH = "/"
