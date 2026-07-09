@@ -92,7 +92,7 @@ export default function WhoWeAre() {
       <PageHero
         title="Who We Are"
         subtitle="Rooted in Jordan. Leading apparel manufacturing in the MENA region through innovation, scale, and sustainability."
-        image="/images/heroes/who-we-are-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_18 AM (2).png"
         imagePosition="center top"
       />
       <Breadcrumbs items={[{ label: "Who We Are" }]} />

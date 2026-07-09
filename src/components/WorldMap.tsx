@@ -198,7 +198,7 @@ export function GlobalPresenceMap() {
 
     const map = new maplibregl.Map({
       container: mapContainerRef.current,
-      style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+      style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
       center: isMobile ? [42, 24] : [35, 25],
       zoom: isMobile ? 0.95 : 1.35,
       minZoom: 0.8,
@@ -224,6 +224,55 @@ export function GlobalPresenceMap() {
     );
 
     map.on("load", () => {
+      try {
+        const layers = map.getStyle()?.layers ?? [];
+
+        layers.forEach((layer) => {
+          const id = layer.id.toLowerCase();
+
+          try {
+            if (layer.type === "background") {
+              map.setPaintProperty(layer.id, "background-color", "#f7efe0");
+            } else if (layer.type === "fill") {
+              if (id.includes("water")) {
+                map.setPaintProperty(layer.id, "fill-color", "#cdeae4");
+              } else if (
+                id.includes("park") ||
+                id.includes("wood") ||
+                id.includes("grass") ||
+                id.includes("landcover") ||
+                id.includes("landuse")
+              ) {
+                map.setPaintProperty(layer.id, "fill-color", "#e6ecd6");
+              } else if (id.includes("building")) {
+                map.setPaintProperty(layer.id, "fill-color", "#f0e2c4");
+              } else {
+                map.setPaintProperty(layer.id, "fill-color", "#f4ead4");
+              }
+            } else if (layer.type === "line") {
+              if (id.includes("boundary") || id.includes("admin")) {
+                map.setPaintProperty(layer.id, "line-color", "#e77051");
+              } else if (id.includes("water")) {
+                map.setPaintProperty(layer.id, "line-color", "#8fcdc0");
+              } else if (id.includes("building")) {
+                map.setPaintProperty(layer.id, "line-color", "#e3d0a5");
+              } else {
+                map.setPaintProperty(layer.id, "line-color", "#2c9e8f");
+                map.setPaintProperty(layer.id, "line-opacity", 0.35);
+              }
+            } else if (layer.type === "symbol") {
+              map.setPaintProperty(layer.id, "text-color", "#274653");
+              map.setPaintProperty(layer.id, "text-halo-color", "#fbf7ef");
+              map.setPaintProperty(layer.id, "text-halo-width", 1.4);
+            }
+          } catch {
+            // some paint properties aren't supported on every layer — skip silently
+          }
+        });
+      } catch {
+        // style not fully loaded / introspectable — fall back to default basemap colors
+      }
+
       map.addSource("classic-fashion-routes", {
         type: "geojson",
         data: routeGeoJson as any,
@@ -239,9 +288,9 @@ export function GlobalPresenceMap() {
           "line-join": "round",
         },
         paint: {
-          "line-color": "#e55c44",
+          "line-color": "#a33d23",
           "line-width": 4,
-          "line-opacity": 0.18,
+          "line-opacity": 0.14,
           "line-blur": 3,
         },
       } as any);
@@ -255,9 +304,9 @@ export function GlobalPresenceMap() {
           "line-join": "round",
         },
         paint: {
-          "line-color": "#f7efe5",
+          "line-color": "#382a17",
           "line-width": 1.5,
-          "line-opacity": 0.72,
+          "line-opacity": 0.55,
           "line-dasharray": [1.2, 1.4],
         },
       } as any);
@@ -339,24 +388,55 @@ export function GlobalPresenceMap() {
   }, [flyToCountry, routeGeoJson]);
 
   return (
-    <section className="relative overflow-hidden bg-[#eef7fb] px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="mb-4 inline-flex rounded-full border border-[#e55c44]/20 bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.26em] text-[#e55c44] shadow-sm">
-            Global Network
-          </span>
+    <section className="relative isolate overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+      <div
+        className="absolute inset-0 -z-20"
+        style={{
+          background:
+            'radial-gradient(circle at 12% 10%, rgba(217,191,143,0.5), transparent 42%), radial-gradient(circle at 90% 85%, rgba(232,213,176,0.6), transparent 44%), linear-gradient(160deg, #fbf7ef 0%, #f4ead4 46%, #e2cd9e 100%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -top-20 left-1/4 -z-10 h-[420px] w-[420px] rounded-full opacity-60 blur-3xl"
+        style={{ background: 'radial-gradient(circle, rgba(44,158,143,0.16), transparent 70%)' }}
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 right-10 -z-10 h-[380px] w-[380px] rounded-full opacity-60 blur-3xl"
+        style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.18), transparent 70%)' }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center select-none overflow-hidden"
+      >
+        <span className="whitespace-nowrap font-display text-[16vw] font-black leading-none tracking-tighter text-brand-beige-900/[0.05]">
+          GLOBAL NETWORK
+        </span>
+      </div>
 
-          <h2 className="text-4xl font-black tracking-tight text-[#0f3340] sm:text-5xl">
-            Global Presence
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-px w-10 bg-brand-coral" />
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-coral">
+              Global Network
+            </span>
+            <span className="h-px w-10 bg-brand-coral" />
+          </div>
+
+          <h2 className="font-display text-4xl font-black tracking-tight text-brand-beige-900 sm:text-6xl">
+            Global{" "}
+            <span className="bg-gradient-to-br from-brand-teal via-brand-coral to-brand-orange bg-clip-text text-transparent">
+              Presence
+            </span>
           </h2>
 
-          <p className="mt-5 text-base leading-8 text-[#34515c] sm:text-lg">
+          <p className="mt-5 text-base leading-8 text-brand-beige-600 sm:text-lg">
             From Jordan to the world — supporting international fashion brands
             through manufacturing scale, sourcing strength, and regional
             expertise.
           </p>
 
-          <p className="mt-4 text-sm leading-7 text-[#486571]">
+          <p className="mt-4 text-sm leading-7 text-brand-beige-600/80">
             Classic Fashion connects Jordan-based apparel manufacturing with
             international markets and supply-chain networks across the USA,
             Egypt, China, India, and Bangladesh. This global presence supports
@@ -365,73 +445,42 @@ export function GlobalPresenceMap() {
           </p>
         </div>
 
-        <div className="relative mx-auto max-w-[1200px] overflow-hidden rounded-3xl border border-white/10 bg-[#081925] shadow-2xl shadow-[#06202c]/20">
-          <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_30%_20%,rgba(229,92,68,0.16),transparent_34%),radial-gradient(circle_at_78%_48%,rgba(32,172,170,0.14),transparent_28%)]" />
+        <div className="relative mx-auto max-w-[1200px] rounded-[28px] bg-gradient-to-br from-brand-coral via-brand-orange to-brand-teal p-[1.5px] shadow-[0_30px_80px_rgba(56,42,23,0.28)]">
+          <div className="relative overflow-hidden rounded-[26.5px] border border-brand-beige-300/60 bg-brand-beige-50">
+            <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_30%_20%,rgba(163,61,35,0.08),transparent_34%),radial-gradient(circle_at_78%_48%,rgba(44,158,143,0.08),transparent_28%)]" />
 
-          <div
-            ref={mapContainerRef}
-            className="relative z-0 h-[340px] w-full sm:h-[460px] lg:h-[560px]"
-            aria-label="Interactive dark world map showing Classic Fashion global presence from Jordan to USA, Egypt, China, India, and Bangladesh"
-          />
+            <div
+              ref={mapContainerRef}
+              className="relative z-0 h-[340px] w-full sm:h-[460px] lg:h-[560px]"
+              aria-label="Interactive dark world map showing Classic Fashion global presence from Jordan to USA, Egypt, China, India, and Bangladesh"
+            />
 
-          <div className="absolute bottom-5 left-5 z-20 flex max-w-[calc(100%-40px)] flex-wrap gap-2">
-            {globalPresenceCountries.map((country) => (
-              <button
-                key={country.id}
-                type="button"
-                onClick={() => flyToCountry(country)}
-                className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide shadow-lg backdrop-blur-md transition-all ${
-                  activeCountryId === country.id
-                    ? "border-[#e55c44] bg-[#e55c44] text-white"
-                    : "border-white/15 bg-[#10283a]/80 text-white/75 hover:border-[#e55c44]/60 hover:bg-[#15334a] hover:text-white"
-                }`}
-              >
-                <span
-                  className={`h-2 w-2 rounded-full ${
+            <div className="absolute bottom-5 left-5 z-20 flex max-w-[calc(100%-40px)] flex-wrap gap-2">
+              {globalPresenceCountries.map((country) => (
+                <button
+                  key={country.id}
+                  type="button"
+                  onClick={() => flyToCountry(country)}
+                  className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide shadow-lg backdrop-blur-md transition-all ${
                     activeCountryId === country.id
-                      ? "bg-white"
-                      : "bg-[#e55c44]"
+                      ? "border-brand-coral bg-brand-coral text-white"
+                      : "border-brand-beige-300/70 bg-white/85 text-brand-beige-900/80 hover:border-brand-coral/60 hover:bg-white hover:text-brand-coral"
                   }`}
-                />
-                {country.name}
-              </button>
-            ))}
+                >
+                  <span
+                    className={`h-2 w-2 rounded-full ${
+                      activeCountryId === country.id
+                        ? "bg-white"
+                        : "bg-brand-coral"
+                    }`}
+                  />
+                  {country.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {globalPresenceCountries.map((country) => (
-            <button
-              key={country.id}
-              type="button"
-              onClick={() => flyToCountry(country)}
-              className={`group rounded-3xl border bg-white p-7 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
-                activeCountryId === country.id
-                  ? "border-[#e55c44]/45 ring-4 ring-[#e55c44]/10"
-                  : "border-[#d9e7ed]"
-              }`}
-            >
-              <div className="mb-5 flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-2xl font-black text-[#bb3f26]">
-                    {country.name}
-                  </h3>
-                  <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.18em] text-[#0f3340]">
-                    {country.role}
-                  </p>
-                </div>
-
-                <span className="rounded-full bg-[#eef7fb] px-3 py-1 text-xs font-black text-[#0f3340] transition-colors group-hover:bg-[#0f3340] group-hover:text-white">
-                  {country.code}
-                </span>
-              </div>
-
-              <p className="text-sm leading-7 text-[#486571]">
-                {country.description}
-              </p>
-            </button>
-          ))}
-        </div>
       </div>
 
       <style>{`

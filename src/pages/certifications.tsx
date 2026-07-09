@@ -80,7 +80,7 @@ export default function Certifications() {
       <PageHero
         title="Certifications"
         subtitle="Internationally recognised standards that validate our commitment to quality, ethics, and sustainability."
-        image="/images/heroes/what-we-do-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_19 AM (3).png"
         overlay="bg-brand-navy/70"
       />
       <Breadcrumbs items={[{ label: "Certifications" }]} />

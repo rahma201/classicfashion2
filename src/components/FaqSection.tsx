@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -27,6 +28,8 @@ interface FaqSectionProps {
   eyebrow?: string;
   title?: string;
   className?: string;
+  style?: CSSProperties;
+  titleClassName?: string;
 }
 
 export function FaqSection({
@@ -34,15 +37,21 @@ export function FaqSection({
   eyebrow = "FAQ",
   title = "Frequently Asked Questions",
   className = "bg-white",
+  style,
+  titleClassName = "text-brand-navy",
 }: FaqSectionProps) {
   return (
-    <section className={`py-24 ${className}`} aria-labelledby="faq-heading">
-      <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+    <section
+      className={`py-24 ${className}`}
+      style={style}
+      aria-labelledby="faq-heading"
+    >
+      <div className="container relative mx-auto px-4 md:px-6 max-w-3xl">
         <div className="text-center mb-12">
           <p className="text-brand-coral text-xs font-bold uppercase tracking-widest mb-3">
             {eyebrow}
           </p>
-          <h2 id="faq-heading" className="text-4xl font-bold text-brand-navy">
+          <h2 id="faq-heading" className={`text-4xl font-bold ${titleClassName}`}>
             {title}
           </h2>
         </div>

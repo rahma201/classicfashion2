@@ -20,6 +20,8 @@ export function PageHero({
   centerLogo ="/images/heroes/homepage_1783290884398.svg"
 ,
 }: PageHeroProps) {
+  const backgroundImageUrl = encodeURI(image);
+
   return (
     <section
       className={`relative ${height} flex items-center justify-center overflow-hidden`}
@@ -29,7 +31,7 @@ export function PageHero({
       <div
         className="absolute inset-0 bg-cover bg-no-repeat scale-105"
         style={{
-          backgroundImage: `url(${image})`,
+          backgroundImage: `url("${backgroundImageUrl}")`,
           backgroundPosition: imagePosition,
         }}
         role="img"

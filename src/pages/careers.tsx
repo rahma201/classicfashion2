@@ -86,7 +86,7 @@ export default function Careers() {
       <PageHero
         title="Careers"
         subtitle="Join the MENA region's largest apparel manufacturer. Be part of a team that creates fashion the world wears."
-        image="/images/heroes/who-we-are-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_18 AM (2).png"
         overlay="bg-brand-navy/72"
         imagePosition="center 20%"
       />

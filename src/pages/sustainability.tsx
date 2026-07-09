@@ -211,17 +211,18 @@ export default function Sustainability() {
   });
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="sustainability-page min-h-screen bg-white">
       <PageHero
         title="Sustainability"
         subtitle="Driving responsible apparel manufacturing through renewable energy, water recycling, waste reduction, and operational efficiency."
         image="/images/heroes/sustainability-hero.png"
+        overlay="bg-gradient-to-b from-[#0f2f22]/40 via-[#173b2b]/34 to-[#102a31]/58"
         height="min-h-[65vh]"
       />
       <Breadcrumbs items={[{ label: "Sustainability" }]} />
 
       {/* ── INTRO ── */}
-      <section className="py-24 bg-white">
+      <section className="eco-section eco-intro py-24">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             variants={fadeInUp}
@@ -255,7 +256,7 @@ export default function Sustainability() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-brand-sage rounded-2xl p-7 text-center border border-gray-100"
+                  className="eco-card eco-card-sage rounded-2xl p-7 text-center border"
                 >
                   <Icon className="text-brand-teal mx-auto mb-3" size={30} />
                   <h3 className="font-bold text-brand-navy mb-1">
@@ -272,7 +273,7 @@ export default function Sustainability() {
       </section>
 
       {/* ── SOLAR PROJECT ── */}
-      <section className="py-24 bg-brand-sage" aria-labelledby="solar-heading">
+      <section className="eco-section eco-solar py-24" aria-labelledby="solar-heading">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             variants={fadeInUp}
@@ -304,7 +305,7 @@ export default function Sustainability() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-brand-orange/15 to-white border border-brand-orange/20 aspect-[4/3] flex items-center justify-center p-10 mb-6">
+              <div className="relative flex items-center justify-center mb-6">
                 <img
                   src="/images/sustainability/solar.png"
                   alt="Solar panel installation representing Classic Fashion's renewable energy programme"
@@ -312,7 +313,7 @@ export default function Sustainability() {
                   loading="lazy"
                 />
               </div>
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="eco-card rounded-2xl p-6 shadow-sm border">
                 <p className="text-gray-700 leading-relaxed">
                   Classic Fashion, with{" "}
                   <strong className="text-brand-navy">Yellow Door Energy</strong>,
@@ -340,7 +341,7 @@ export default function Sustainability() {
                 {solarMilestones.map((m, i) => (
                   <div
                     key={i}
-                    className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start"
+                    className="eco-card rounded-2xl p-5 shadow-sm border flex gap-4 items-start"
                   >
                     <span className="flex-shrink-0 bg-brand-orange/10 text-brand-orange font-bold text-xs uppercase tracking-widest px-3 py-1.5 rounded-full">
                       {m.status}
@@ -374,7 +375,7 @@ export default function Sustainability() {
               {emissionData.map((row) => (
                 <div
                   key={row.year}
-                  className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+                  className="eco-card rounded-2xl p-6 shadow-sm border"
                 >
                   <div className="flex justify-between items-end mb-3">
                     <span className="font-bold text-brand-navy">{row.year}</span>
@@ -402,7 +403,7 @@ export default function Sustainability() {
       </section>
 
       {/* ── WATER RECYCLING ── */}
-      <section className="py-24 bg-white" aria-labelledby="water-heading">
+      <section className="eco-section eco-water py-24" aria-labelledby="water-heading">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             variants={fadeInUp}
@@ -426,7 +427,7 @@ export default function Sustainability() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-brand-teal/15 to-white border border-brand-teal/20 aspect-[4/3] flex items-center justify-center p-10"
+              className="relative flex items-center justify-center"
             >
               <img
                 src="/images/sustainability/water-recycling.png"
@@ -445,7 +446,7 @@ export default function Sustainability() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
-                  className={`bg-brand-sage border-2 ${plant.border} rounded-3xl p-8`}
+                  className={`eco-card eco-card-water border-2 ${plant.border} rounded-3xl p-8`}
                 >
                   <div className={`text-3xl font-bold ${plant.abbrClass} mb-1`}>
                     {plant.abbr}
@@ -470,7 +471,7 @@ export default function Sustainability() {
       </section>
 
       {/* ── WASTE MANAGEMENT ── */}
-      <section className="py-24 bg-brand-sage" aria-labelledby="waste-heading">
+      <section className="eco-section eco-waste py-24" aria-labelledby="waste-heading">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             variants={fadeInUp}
@@ -495,7 +496,7 @@ export default function Sustainability() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-brand-coral/15 to-white border border-brand-coral/20 aspect-[4/3] flex items-center justify-center p-10 mb-6">
+              <div className="relative flex items-center justify-center mb-6">
                 <img
                   src="/images/sustainability/waste-recycling.png"
                   alt="Recycling icon representing Classic Fashion's fabric waste recovery programme"
@@ -523,7 +524,7 @@ export default function Sustainability() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white rounded-2xl p-6 shadow-sm border border-white flex gap-5 items-start"
+                  className="eco-card rounded-2xl p-6 shadow-sm border flex gap-5 items-start"
                 >
                   <div className="flex-shrink-0 text-3xl font-bold text-brand-coral/30 leading-none">
                     {stage.stage}
@@ -555,9 +556,9 @@ export default function Sustainability() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="bg-white rounded-2xl border border-gray-100 p-8 flex flex-col md:flex-row gap-6 items-center shadow-sm max-w-4xl mx-auto"
+            className="eco-card rounded-2xl border p-8 flex flex-col md:flex-row gap-6 items-center shadow-sm max-w-4xl mx-auto"
           >
-            <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center flex-shrink-0 text-3xl">
+            <div className="w-16 h-16 bg-[#eff6df] rounded-full flex items-center justify-center flex-shrink-0 text-3xl">
               🌱
             </div>
             <div>
@@ -576,7 +577,7 @@ export default function Sustainability() {
       </section>
 
       {/* ── ENERGY CONSERVATION ── */}
-      <section className="py-24 bg-white" aria-labelledby="energy-heading">
+      <section className="eco-section eco-energy py-24" aria-labelledby="energy-heading">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             variants={fadeInUp}
@@ -596,7 +597,7 @@ export default function Sustainability() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-brand-navy/5 to-white border border-brand-navy/10 mb-14 flex items-center justify-center p-10 max-w-md mx-auto aspect-[4/3]"
+            className="relative mb-14 flex items-center justify-center max-w-md mx-auto"
           >
             <img
               src="/images/sustainability/energy-conservation.png"
@@ -617,7 +618,7 @@ export default function Sustainability() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-brand-sage rounded-2xl p-8 border border-gray-100"
+                  className="eco-card eco-card-sage rounded-2xl p-8 border"
                 >
                   <Icon className="text-brand-coral mb-4" size={32} />
                   <h3 className="text-xl font-bold text-brand-navy mb-3">
@@ -649,7 +650,7 @@ export default function Sustainability() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="bg-brand-navy text-white rounded-3xl p-10 md:p-14 mb-12"
+            className="eco-bms text-white rounded-3xl p-10 md:p-14 mb-12"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
@@ -691,7 +692,7 @@ export default function Sustainability() {
               return (
                 <div
                   key={ind.label}
-                  className="bg-brand-sage rounded-2xl p-8 text-center border border-gray-100"
+                  className="eco-card eco-card-sage rounded-2xl p-8 text-center border"
                 >
                   <Icon className="text-brand-teal mx-auto mb-3" size={30} />
                   <div className="text-3xl font-bold text-brand-coral mb-1">
@@ -709,7 +710,7 @@ export default function Sustainability() {
       </section>
 
       {/* ── CERTIFICATIONS ── */}
-      <section className="py-24 bg-brand-navy">
+      <section className="eco-section eco-certifications py-24">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <motion.div
             variants={fadeInUp}
@@ -746,7 +747,7 @@ export default function Sustainability() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="py-32 bg-brand-teal relative overflow-hidden">
+      <section className="eco-section eco-cta py-32 relative overflow-hidden">
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             variants={fadeInUp}
@@ -780,7 +781,199 @@ export default function Sustainability() {
         </div>
       </section>
 
-      <FaqSection items={faqs} className="bg-brand-gray" />
+      <FaqSection items={faqs} className="eco-section eco-faq" />
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .sustainability-page {
+              --eco-forest: #123628;
+              --eco-moss: #31582f;
+              --eco-olive: #7d8a54;
+              --eco-leaf: #a8bf67;
+              --eco-paper: #f3ebd9;
+              --eco-sand: #dfceb1;
+              --eco-earth: #a88462;
+              --eco-water: #b9d5cf;
+              --eco-water-deep: #5f8d86;
+              --eco-sky: #dceaf0;
+              --eco-fabric: #0d493b;
+              --eco-sun: #ead37c;
+              --eco-clay: #c77f52;
+            }
+
+            .sustainability-page .eco-section {
+              position: relative;
+              isolation: isolate;
+              overflow: hidden;
+            }
+
+            .sustainability-page .eco-section::before,
+            .sustainability-page .eco-section::after {
+              content: "";
+              position: absolute;
+              z-index: -1;
+              pointer-events: none;
+              border-radius: 999px;
+              filter: blur(56px);
+              opacity: 0.42;
+            }
+
+            .sustainability-page .eco-section::before {
+              width: min(42vw, 520px);
+              height: min(42vw, 520px);
+              top: -18%;
+              left: -12%;
+            }
+
+            .sustainability-page .eco-section::after {
+              width: min(36vw, 460px);
+              height: min(36vw, 460px);
+              right: -12%;
+              bottom: -18%;
+            }
+
+            .sustainability-page .eco-section > .container {
+              position: relative;
+              z-index: 1;
+            }
+
+            .sustainability-page .eco-intro {
+              background:
+                radial-gradient(circle at 12% 8%, rgba(168, 191, 103, 0.24), transparent 34%),
+                radial-gradient(circle at 88% 12%, rgba(220, 234, 240, 0.7), transparent 28%),
+                linear-gradient(180deg, #fbfcf7 0%, #f4f7ec 48%, #eef4e6 100%);
+            }
+
+            .sustainability-page .eco-intro::before {
+              background: rgba(125, 138, 84, 0.26);
+            }
+
+            .sustainability-page .eco-intro::after {
+              background: rgba(185, 213, 207, 0.45);
+            }
+
+            .sustainability-page .eco-solar {
+              background:
+                radial-gradient(circle at 78% 15%, rgba(234, 211, 124, 0.38), transparent 30%),
+                radial-gradient(circle at 18% 82%, rgba(49, 88, 47, 0.16), transparent 36%),
+                linear-gradient(180deg, #eef4e6 0%, #f2efd8 45%, #dceaf0 100%);
+            }
+
+            .sustainability-page .eco-solar::before {
+              background: rgba(234, 211, 124, 0.36);
+            }
+
+            .sustainability-page .eco-solar::after {
+              background: rgba(92, 141, 134, 0.26);
+            }
+
+            .sustainability-page .eco-water {
+              background:
+                radial-gradient(circle at 12% 22%, rgba(185, 213, 207, 0.66), transparent 34%),
+                radial-gradient(circle at 85% 78%, rgba(168, 191, 103, 0.2), transparent 32%),
+                linear-gradient(180deg, #dceaf0 0%, #e7f2ec 48%, #edf5e4 100%);
+            }
+
+            .sustainability-page .eco-water::before {
+              background: rgba(95, 141, 134, 0.24);
+            }
+
+            .sustainability-page .eco-water::after {
+              background: rgba(220, 234, 240, 0.75);
+            }
+
+            .sustainability-page .eco-waste {
+              background:
+                radial-gradient(circle at 16% 12%, rgba(49, 88, 47, 0.2), transparent 30%),
+                radial-gradient(circle at 84% 82%, rgba(168, 132, 98, 0.2), transparent 34%),
+                linear-gradient(180deg, #edf5e4 0%, #f3ebd9 52%, #edf1df 100%);
+            }
+
+            .sustainability-page .eco-waste::before {
+              background: rgba(49, 88, 47, 0.28);
+            }
+
+            .sustainability-page .eco-waste::after {
+              background: rgba(223, 206, 177, 0.56);
+            }
+
+            .sustainability-page .eco-energy {
+              background:
+                radial-gradient(circle at 82% 14%, rgba(234, 211, 124, 0.3), transparent 30%),
+                radial-gradient(circle at 16% 76%, rgba(185, 213, 207, 0.36), transparent 38%),
+                linear-gradient(180deg, #edf1df 0%, #f8f4e7 48%, #e5efdb 100%);
+            }
+
+            .sustainability-page .eco-energy::before {
+              background: rgba(234, 211, 124, 0.32);
+            }
+
+            .sustainability-page .eco-energy::after {
+              background: rgba(49, 88, 47, 0.18);
+            }
+
+            .sustainability-page .eco-certifications {
+              background:
+                radial-gradient(circle at 18% 20%, rgba(95, 141, 134, 0.26), transparent 34%),
+                radial-gradient(circle at 86% 70%, rgba(234, 211, 124, 0.12), transparent 30%),
+                linear-gradient(180deg, #e5efdb 0%, #173b2b 14%, #0e303c 100%);
+            }
+
+            .sustainability-page .eco-certifications::before {
+              background: rgba(95, 141, 134, 0.28);
+            }
+
+            .sustainability-page .eco-certifications::after {
+              background: rgba(234, 211, 124, 0.16);
+            }
+
+            .sustainability-page .eco-cta {
+              background:
+                radial-gradient(circle at 22% 20%, rgba(234, 211, 124, 0.18), transparent 32%),
+                radial-gradient(circle at 82% 78%, rgba(185, 213, 207, 0.2), transparent 34%),
+                linear-gradient(180deg, #0e303c 0%, #0d493b 52%, #2c8279 100%);
+            }
+
+            .sustainability-page .eco-cta::before {
+              background: rgba(234, 211, 124, 0.18);
+            }
+
+            .sustainability-page .eco-cta::after {
+              background: rgba(185, 213, 207, 0.22);
+            }
+
+            .sustainability-page .eco-faq {
+              background:
+                radial-gradient(circle at 10% 12%, rgba(185, 213, 207, 0.42), transparent 34%),
+                radial-gradient(circle at 88% 82%, rgba(223, 206, 177, 0.36), transparent 32%),
+                linear-gradient(180deg, #2c8279 0%, #eef5ef 12%, #f7f4eb 100%);
+            }
+
+            .sustainability-page .eco-card {
+              background: rgba(255, 255, 255, 0.78);
+              border-color: rgba(18, 54, 40, 0.1);
+              box-shadow: 0 18px 44px rgba(18, 54, 40, 0.08);
+              backdrop-filter: blur(12px);
+            }
+
+            .sustainability-page .eco-card-sage {
+              background: linear-gradient(145deg, rgba(255,255,255,0.72), rgba(237,245,228,0.82));
+            }
+
+            .sustainability-page .eco-card-water {
+              background: linear-gradient(145deg, rgba(255,255,255,0.78), rgba(231,242,236,0.86));
+            }
+
+            .sustainability-page .eco-bms {
+              background:
+                radial-gradient(circle at 18% 18%, rgba(95, 141, 134, 0.28), transparent 34%),
+                linear-gradient(135deg, #123628, #0e303c 58%, #0d493b);
+              box-shadow: 0 26px 70px rgba(14, 48, 60, 0.22);
+            }
+          `,
+        }}
+      />
     </div>
   );
 }

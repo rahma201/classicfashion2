@@ -90,6 +90,8 @@ const faqs: FaqItem[] = [
 ];
 
 export default function WhatWeDo() {
+  const partnerSlides = [...partners, ...partners];
+
   useSeo({
     title: "What We Do — Apparel Manufacturing Capabilities | Classic Fashion",
     description:
@@ -106,7 +108,7 @@ export default function WhatWeDo() {
       <PageHero
         title="What We Do"
         subtitle="Vertically integrated apparel manufacturing at scale — from raw materials to finished garments."
-        image="/images/heroes/what-we-do-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_07_17 AM.png"
         imagePosition="center center"
       />
       <Breadcrumbs items={[{ label: "What We Do" }]} />
@@ -307,25 +309,25 @@ export default function WhatWeDo() {
               international fashion and retail brands across global markets.
             </p>
           </motion.div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-            {partners.map((partner, i) => (
-              <motion.div
-                key={partner.name}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex items-center justify-center h-24 hover:shadow-md hover:-translate-y-1 transition-all"
-              >
-                <img
-                  src={`/images/partners/${partner.file}`}
-                  alt={`${partner.name} partner logo`}
-                  className="max-h-10 w-auto object-contain"
-                  loading="lazy"
-                />
-              </motion.div>
-            ))}
+          <div className="partner-slider relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-brand-gray to-transparent sm:w-28" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-brand-gray to-transparent sm:w-28" />
+
+            <div className="partner-slider-track">
+              {partnerSlides.map((partner, i) => (
+                <div
+                  key={`${partner.name}-${i}`}
+                  className="partner-logo-card"
+                >
+                  <img
+                    src={`/images/partners/${partner.file}`}
+                    alt={`${partner.name} partner logo`}
+                    className="max-h-9 w-auto object-contain sm:max-h-10"
+                    loading={i < partners.length ? "eager" : "lazy"}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -423,6 +425,59 @@ export default function WhatWeDo() {
       </section>
 
       <FaqSection items={faqs} className="bg-brand-gray" />
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes partnerMarquee {
+              from { transform: translateX(0); }
+              to { transform: translateX(-50%); }
+            }
+
+            .partner-slider-track {
+              display: flex;
+              width: max-content;
+              gap: clamp(0.9rem, 1.6vw, 1.25rem);
+              animation: partnerMarquee 34s linear infinite;
+              will-change: transform;
+            }
+
+            .partner-slider:hover .partner-slider-track {
+              animation-play-state: paused;
+            }
+
+            .partner-logo-card {
+              flex: 0 0 auto;
+              width: clamp(180px, 18vw, 255px);
+              height: 86px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid rgba(14,48,60,0.08);
+              border-radius: 0.75rem;
+              background: #fff;
+              box-shadow: 0 8px 22px rgba(14,48,60,0.08);
+            }
+
+            @media (max-width: 640px) {
+              .partner-slider-track {
+                animation-duration: 26s;
+              }
+
+              .partner-logo-card {
+                width: 160px;
+                height: 76px;
+              }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .partner-slider-track {
+                animation: none;
+              }
+            }
+          `,
+        }}
+      />
     </div>
   );
 }

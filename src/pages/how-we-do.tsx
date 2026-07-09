@@ -15,7 +15,7 @@ const sections = [
     title: "With People",
     tagline: "Human Capital at the Core",
     body: `Our 36,000+ strong workforce is our greatest asset. We maintain strict labor welfare standards, ensuring fair wages, safe working environments, and continuous training.\n\nQuality control is embedded at every step. We even host client labs on-site, so brand partners can witness production standards firsthand and collaborate directly with our teams.`,
-    image: "/images/heroes/who-we-are-hero.png",
+    image: "/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_18 AM (2).png",
     accentIconClass: "text-brand-coral",
     accentGradientClass: "bg-gradient-to-tr from-brand-coral/30 to-transparent",
     accentTextClass: "text-brand-coral",
@@ -26,7 +26,7 @@ const sections = [
     title: "With Technology",
     tagline: "Precision at Industrial Scale",
     body: `From digital printing to laser cutting, our investment in technology ensures we never sacrifice quality for volume. Our BIA Textiles subsidiary produces 35 tons of fabric daily using advanced weaving machinery.\n\nOur ERP and production management systems provide complete traceability across the supply chain — from raw materials to finished garments.`,
-    image: "/images/heroes/how-we-do-hero.png",
+    image: "/images/heroes/sustainability-hero.png",
     accentIconClass: "text-brand-teal",
     accentGradientClass: "bg-gradient-to-tr from-brand-teal/30 to-transparent",
     accentTextClass: "text-brand-teal",
@@ -59,7 +59,7 @@ export default function HowWeDo() {
       <PageHero
         title="How We Do"
         subtitle="People, technology, and sustainability — the three pillars of everything we make."
-        image="/images/heroes/how-we-do-hero.png"
+        image="/images/heroes/sustainability-hero.png"
         overlay="bg-brand-navy/68"
         imagePosition="center 30%"
       />

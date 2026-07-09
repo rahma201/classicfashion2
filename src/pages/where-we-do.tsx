@@ -45,7 +45,7 @@ export default function WhereWeDo() {
       <PageHero
         title="Where We Do"
         subtitle="Operating across six strategic global hubs to ensure supply chain resilience and excellence."
-        image="/images/heroes/where-we-do-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_19 AM (3).png"
         overlay="bg-brand-navy/70"
         imagePosition="center 40%"
       />
@@ -127,7 +127,7 @@ export default function WhereWeDo() {
           </div>
           <div className="relative rounded-2xl overflow-hidden aspect-square bg-brand-navy flex items-center justify-center">
             <img
-              src="/images/heroes/where-we-do-map.png"
+              src="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_19 AM (3).png"
               alt="Map outline of Jordan, home to Classic Fashion's headquarters and primary manufacturing base"
               className="w-2/3 h-2/3 object-contain drop-shadow-2xl"
               loading="lazy"

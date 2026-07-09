@@ -23,7 +23,7 @@ const cases = [
       "GOTS-certified production line",
       "Client QC lab embedded on-site",
     ],
-    image: "/images/heroes/what-we-do-hero.png",
+    image: "/images/heroes/ChatGPT Image Jul 9, 2026, 10_07_17 AM.png",
     accent: "brand-coral",
   },
   {
@@ -38,7 +38,7 @@ const cases = [
       "Fabric to finished garment",
       "WRAP & SEDEX compliant",
     ],
-    image: "/images/heroes/who-we-are-hero.png",
+    image: "/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_18 AM (2).png",
     accent: "brand-teal",
   },
   {
@@ -53,7 +53,7 @@ const cases = [
       "Advanced knitting technology",
       "Full tech pack execution",
     ],
-    image: "/images/heroes/how-we-do-hero.png",
+    image: "/images/heroes/sustainability-hero.png",
     accent: "brand-orange",
   },
 ];
@@ -78,7 +78,7 @@ export default function CaseStudies() {
       <PageHero
         title="Case Studies"
         subtitle="Real-world partnerships. Measurable results. Fashion brands trust us to deliver."
-        image="/images/heroes/what-we-do-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_07_17 AM.png"
         overlay="bg-brand-navy/70"
       />
       <Breadcrumbs items={[{ label: "Case Studies" }]} />

@@ -1,6 +1,14 @@
 import { Link } from "wouter";
-import { SiInstagram, SiFacebook, SiYoutube } from "react-icons/si";
-import { Linkedin, ArrowRight } from "lucide-react";
+import {
+  Instagram,
+  Facebook,
+  Youtube,
+  Linkedin,
+  ArrowRight,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
 
 const quickLinks = [
   { name: "Who We Are", href: "/who-we-are" },
@@ -22,7 +30,12 @@ const moreLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-brand-navy text-white">
+    <footer
+      className="text-white"
+      style={{
+        background: 'linear-gradient(150deg, #382a17 0%, #4a3620 45%, #2f2213 100%)',
+      }}
+    >
       {/* CTA band */}
       <div className="border-b border-white/10 py-16">
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
@@ -66,10 +79,10 @@ export function Footer() {
             {/* Social */}
             <div className="flex gap-3 mt-6">
               {[
-                { icon: SiInstagram, label: "Instagram" },
-                { icon: SiFacebook, label: "Facebook" },
+                { icon: Instagram, label: "Instagram" },
+                { icon: Facebook, label: "Facebook" },
                 { icon: Linkedin, label: "LinkedIn" },
-                { icon: SiYoutube, label: "YouTube" },
+                { icon: Youtube, label: "YouTube" },
               ].map(({ icon: Icon, label }) => (
                 <a
                   key={label}
@@ -127,46 +140,55 @@ export function Footer() {
               Contact
             </h3>
             <address className="not-italic flex flex-col gap-4 text-white/75 text-sm">
-              <div>
-                <div className="font-semibold text-white mb-1">
-                  Headquarters
+              <div className="flex gap-3">
+                <MapPin size={18} className="flex-shrink-0 mt-0.5 text-brand-coral" />
+                <div>
+                  <div className="font-semibold text-white mb-1">
+                    Headquarters
+                  </div>
+                  Al Hassan Industrial Estate
+                  <br />
+                  P.O. Box 54, Ramtha
+                  <br />
+                  Irbid, Jordan — 21467
                 </div>
-                Al Hassan Industrial Estate
-                <br />
-                P.O. Box 54, Ramtha
-                <br />
-                Irbid, Jordan — 21467
               </div>
-              <div>
-                <div className="font-semibold text-white mb-1">Phone</div>
-                <a
-                  href="tel:+96227391369"
-                  className="hover:text-brand-coral transition-colors"
-                >
-                  +962 273 91369
-                </a>
-                <br />
-                <a
-                  href="tel:+96227391368"
-                  className="hover:text-brand-coral transition-colors"
-                >
-                  +962 273 91368
-                </a>
+              <div className="flex gap-3">
+                <Phone size={18} className="flex-shrink-0 mt-0.5 text-brand-coral" />
+                <div>
+                  <div className="font-semibold text-white mb-1">Phone</div>
+                  <a
+                    href="tel:+96227391369"
+                    className="hover:text-brand-coral transition-colors"
+                  >
+                    +962 273 91369
+                  </a>
+                  <br />
+                  <a
+                    href="tel:+96227391368"
+                    className="hover:text-brand-coral transition-colors"
+                  >
+                    +962 273 91368
+                  </a>
+                </div>
               </div>
-              <div>
-                <div className="font-semibold text-white mb-1">Email</div>
-                <a
-                  href="mailto:info@classicfashion.com"
-                  className="hover:text-brand-coral transition-colors block"
-                >
-                  info@classicfashion.com
-                </a>
-                <a
-                  href="mailto:careers@classicfashion.com"
-                  className="hover:text-brand-coral transition-colors block mt-1"
-                >
-                  careers@classicfashion.com
-                </a>
+              <div className="flex gap-3">
+                <Mail size={18} className="flex-shrink-0 mt-0.5 text-brand-coral" />
+                <div>
+                  <div className="font-semibold text-white mb-1">Email</div>
+                  <a
+                    href="mailto:info@classicfashion.com"
+                    className="hover:text-brand-coral transition-colors block"
+                  >
+                    info@classicfashion.com
+                  </a>
+                  <a
+                    href="mailto:careers@classicfashion.com"
+                    className="hover:text-brand-coral transition-colors block mt-1"
+                  >
+                    careers@classicfashion.com
+                  </a>
+                </div>
               </div>
             </address>
           </div>

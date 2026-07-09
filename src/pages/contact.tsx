@@ -122,7 +122,7 @@ export default function Contact() {
       <PageHero
         title="Contact Us"
         subtitle="Partner with the MENA region's largest garment manufacturer. Let's build something great together."
-        image="/images/heroes/contact-us-hero.png"
+        image="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_18 AM (1).png"
         overlay="bg-brand-navy/72"
         imagePosition="center 60%"
       />
