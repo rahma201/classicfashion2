@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { FingerprintMark } from "@/components/ui/fingerprint-mark";
 
 type Country = {
   id: string;
@@ -390,27 +391,14 @@ export function GlobalPresenceMap() {
   return (
     <section className="relative isolate overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
       <div
-        className="absolute inset-0 -z-20"
-        style={{
-          background:
-            'radial-gradient(circle at 12% 10%, rgba(217,191,143,0.5), transparent 42%), radial-gradient(circle at 90% 85%, rgba(232,213,176,0.6), transparent 44%), linear-gradient(160deg, #fbf7ef 0%, #f4ead4 46%, #e2cd9e 100%)',
-        }}
+        className="absolute inset-0 -z-20 bg-linear-to-b from-brand-beige-50 via-brand-beige-50/80 to-[#FBF6ED]"
       />
-      <div
-        className="pointer-events-none absolute -top-20 left-1/4 -z-10 h-[420px] w-[420px] rounded-full opacity-60 blur-3xl"
-        style={{ background: 'radial-gradient(circle, rgba(44,158,143,0.16), transparent 70%)' }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 right-10 -z-10 h-[380px] w-[380px] rounded-full opacity-60 blur-3xl"
-        style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.18), transparent 70%)' }}
-      />
+      
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center select-none overflow-hidden"
       >
-        <span className="whitespace-nowrap font-display text-[16vw] font-black leading-none tracking-tighter text-brand-beige-900/[0.05]">
-          GLOBAL NETWORK
-        </span>
+        <FingerprintMark className="h-[80vh] w-auto text-brand-coral/4 sm:h-[110vh]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl">

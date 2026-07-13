@@ -1,9 +1,12 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { StatsGrid } from "@/components/StatsGrid";
 import { WorldMap } from "@/components/WorldMap";
 import { BlogCard } from "@/components/BlogCard";
 import { FaqSection, type FaqItem } from "@/components/FaqSection";
+import ShinyText from "@/components/ui/shiny-text";
+import { FingerprintMark } from "@/components/ui/fingerprint-mark";
 import { Instagram, Facebook, Youtube, Linkedin, Crown } from "lucide-react";
 
 const fadeInUp = {
@@ -52,50 +55,72 @@ const faqs: FaqItem[] = [
 
 export default function Home() {
   const partnerSlides = [...partners, ...partners];
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.playbackRate = 0.5;
+    }
+  }, []);
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <video
+          ref={heroVideoRef}
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+          src="https://ik.imagekit.io/oq92dh6zib/classicfashion-hero-video.mp4"
+          poster="/images/heroes/home-hero.png"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+
+        {/* Gradient overlay — dark at top for text contrast, fading down into the beige tone that opens the World Map section below */}
         <div
-          className="absolute inset-0 z-0"
+          aria-hidden="true"
+          className="absolute inset-0 z-1 backdrop-blur-sm"
           style={{
-            backgroundImage: `url(/images/heroes/home-hero.png)`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            background:
+              'linear-gradient(180deg, rgba(14,48,60,0.32) 32%, rgba(14,48,60,0.18) 52%, rgba(251,247,239,0.5) 80%, #fbf7ef 100%)',
           }}
         />
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <div className="relative rounded-3xl bg-black/20 backdrop-blur-sm px-6 py-12 md:px-16 md:py-16 overflow-hidden">
-            {/* animated gradient border glow */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-3xl opacity-60"
-              style={{
-                background:
-                  'linear-gradient(120deg, transparent 40%, rgba(245,172,27,0.5) 50%, transparent 60%)',
-                backgroundSize: '200% 200%',
-                animation: 'heroSheen 6s ease-in-out infinite',
-              }}
-            />
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/15" />
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none select-none mx-auto h-32 w-auto text-brand-beige-50 md:h-32"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: [0, -16, 0], rotate: [0, 2, 0, -2, 0] }}
+            transition={{
+              opacity: { duration: 0.8 },
+              y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+            }}
+          >
+            <FingerprintMark className="mx-auto h-full w-auto drop-shadow-[0_12px_26px_rgba(14,48,60,0.45)]" />
+          </motion.div>
+
+          <div className="relative px-6 py-12 md:px-16 md:py-4 overflow-hidden">
+
+            <div className="pointer-events-none absolute inset-0 " />
 
             {/* giant decorative quote mark */}
             <span
               aria-hidden="true"
               className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-display text-[9rem] md:text-[12rem] leading-none text-brand-orange/10 select-none"
             >
-              "
+              
             </span>
 
             <motion.p
               initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative font-display italic text-2xl md:text-4xl font-light tracking-wide bg-gradient-to-r from-brand-orange via-white to-brand-orange bg-clip-text text-transparent mb-6"
+              className="relative font-display italic text-2xl md:text-4xl font-light tracking-wide text-brand-beige-50 mb-6"
             >
               "A touch changes everything"
             </motion.p>
@@ -104,13 +129,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15 }}
-              className="relative font-display text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 [text-wrap:balance]"
+              className="relative font-display text-2xl md:text-4xl lg:text-5xl font-black text-brand-beige-100 leading-tight mb-8 [text-wrap:balance]"
             >
               Classic Fashion is an integrated giant textile company that
               produces for the{" "}
-              <span className="bg-gradient-to-r from-brand-orange to-brand-coral bg-clip-text text-transparent">
-                world's leading brands
-              </span>
+              <ShinyText
+                text="world's leading brands"
+                color="#F5AC1B"
+                shineColor="#fbf7ef"
+                speed={2.5}
+                spread={110}
+                className="text-2xl md:text-4xl lg:text-5xl font-display font-black align-baseline"
+              />
               .
             </motion.h1>
 
@@ -120,16 +150,16 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.35 }}
               className="relative flex items-center justify-center gap-4 mb-6"
             >
-              <span className="h-px w-12 bg-gradient-to-r from-transparent to-brand-orange" />
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
-              <span className="h-px w-12 bg-gradient-to-l from-transparent to-brand-orange" />
+              <span className="h-px w-12 bg-gradient-to-r from-transparent to-brand-navy" />
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-coral" />
+              <span className="h-px w-12 bg-gradient-to-l from-transparent to-brand-navy" />
             </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.45 }}
-              className="relative text-white/85 text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
+              className="relative text-brand-navy/90 text-sm md:text-lg leading-relaxed max-w-2xl mx-auto"
             >
               We stand out with our industry leadership and reliability, taking
               pride in delivering superior quality products to customers
