@@ -1,13 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import ScaleMeetsPrecision from "@/components/ScaleMeetsPrecision";
-import PetraLineArt from "@/components/PetraLineArt";
 import { WorldMap } from "@/components/WorldMap";
 import { BlogCard } from "@/components/BlogCard";
 import { FaqSection, type FaqItem } from "@/components/FaqSection";
 import ShinyText from "@/components/ui/shiny-text";
-import { FingerprintMark } from "@/components/ui/fingerprint-mark";
 import { Instagram, Facebook, Youtube, Linkedin, Crown } from "lucide-react";
 
 const fadeInUp = {
@@ -57,6 +55,7 @@ const faqs: FaqItem[] = [
 export default function Home() {
   const partnerSlides = [...partners, ...partners];
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const [flippedBank, setFlippedBank] = useState<string | null>(null);
 
   useEffect(() => {
     if (heroVideoRef.current) {
@@ -91,20 +90,6 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <motion.div
-            aria-hidden="true"
-            className="pointer-events-none select-none mx-auto h-32 w-auto text-brand-beige-50 md:h-32"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: [0, -16, 0], rotate: [0, 2, 0, -2, 0] }}
-            transition={{
-              opacity: { duration: 0.8 },
-              y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
-            }}
-          >
-            <FingerprintMark className="mx-auto h-full w-auto drop-shadow-[0_12px_26px_rgba(14,48,60,0.45)]" />
-          </motion.div>
-
           <div className="relative px-6 py-12 md:px-16 md:py-4 overflow-hidden">
 
             <div className="pointer-events-none absolute inset-0 " />
@@ -141,34 +126,20 @@ export default function Home() {
               transition={{ duration: 0.9, delay: 0.15 }}
               className="relative mb-8 flex flex-col items-center"
             >
-              <ShinyText
-                text="Classic Fashion is an integrated giant"
-                color="#fbf7ef"
-                colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
-                speed={2.5}
-                spread={110}
-                startDelay={2}
-                delay={7}
-                className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
-              />
-              <ShinyText
-                text="textile company that produces"
-                color="#fbf7ef"
-                colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
-                speed={2.5}
-                spread={110}
-                startDelay={4.5}
-                delay={7}
-                className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
-              />
+              <span className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight text-brand-beige-50">
+                An integrated textile giant
+              </span>
+              <span className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight text-brand-beige-50">
+                manufacturing at scale
+              </span>
               <ShinyText
                 text="for the world's leading brands."
                 color="#fbf7ef"
                 colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
-                speed={2.5}
+                speed={5}
                 spread={110}
-                startDelay={7}
-                delay={7}
+                startDelay={0.5}
+                delay={4}
                 className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
               />
             </motion.h1>
@@ -233,26 +204,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Warm beige flow — one continuous background spanning World Map → Stats → Partners → Blog → CTA → FAQ, so section boundaries blend instead of cutting */}
+      {/* Champagne-beige flow — one continuous luxury gradient canvas spanning World Map → Stats → Partners → Blog → CTA → FAQ, applied once on this shared wrapper so no section carries its own background */}
       <div className="relative isolate overflow-hidden">
         <div
-          className="absolute inset-0 -z-20"
+          className="pointer-events-none absolute inset-0 -z-20"
           style={{
             background:
-              'linear-gradient(180deg, #fbf7ef 0%, #f6eedd 25%, #f0e4c8 50%, #e8d7ae 75%, #d9bf8f 100%)',
+              'radial-gradient(ellipse 55% 32% at 78% 18%, rgba(194,126,78,0.10) 0%, rgba(194,126,78,0.04) 40%, transparent 72%), radial-gradient(ellipse 60% 38% at 18% 52%, rgba(214,177,109,0.14) 0%, rgba(214,177,109,0.05) 45%, transparent 75%), radial-gradient(ellipse 45% 25% at 72% 75%, rgba(180,58,34,0.055) 0%, transparent 72%), linear-gradient(180deg, #F8EFD9 0%, #F2E2BE 28%, #EBD4A8 52%, #F3E3C3 76%, #FAF3E5 100%)',
           }}
         />
 
         {/* World Map Section */}
         <WorldMap />
-        <div
-          className="pointer-events-none absolute left-[-8%] top-[4%] -z-10 h-[460px] w-[460px] rounded-full opacity-25 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.16), transparent 70%)' }}
-        />
-        <div
-          className="pointer-events-none absolute right-[-8%] top-[88%] -z-10 h-[380px] w-[380px] rounded-full opacity-25 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.14), transparent 70%)' }}
-        />
 
       {/* Our Partners */}
       <section className="relative py-24" aria-labelledby="home-partners-heading">
@@ -376,17 +339,6 @@ export default function Home() {
 
       {/* B2B CTA */}
       <section className="relative isolate overflow-hidden py-28">
-        {/* angular coral/orange accent slab */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-1/4 top-0 -z-0 h-full w-[70%] opacity-80"
-          style={{
-            background: 'linear-gradient(115deg, transparent 42%, rgba(163,61,35,0.28) 55%, rgba(231,112,81,0.3) 70%, rgba(245,172,27,0.32) 100%)',
-            maskImage: 'linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%)',
-          }}
-        />
-
         <div className="container relative z-10 mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <motion.div
@@ -506,7 +458,9 @@ export default function Home() {
                 file: "bank-al-etihad.png",
                 summary: "A major Jordanian bank supporting our day-to-day financial operations, payroll, and local supplier relationships.",
               },
-            ].map((bank, i) => (
+            ].map((bank, i) => {
+              const isFlipped = flippedBank === bank.name;
+              return (
               <motion.div
                 key={bank.name}
                 variants={fadeInUp}
@@ -514,9 +468,26 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                className="group perspective-distant"
+                className="group perspective-distant cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-pressed={isFlipped}
+                aria-label={`${bank.name} — show details`}
+                onClick={() =>
+                  setFlippedBank((prev) => (prev === bank.name ? null : bank.name))
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setFlippedBank((prev) => (prev === bank.name ? null : bank.name));
+                  }
+                }}
               >
-                <div className="relative h-44 w-full transform-3d transition-transform duration-500 group-hover:transform-[rotateY(180deg)]">
+                <div
+                  className={`relative h-44 w-full transform-3d transition-transform duration-500 group-hover:transform-[rotateY(180deg)] ${
+                    isFlipped ? "transform-[rotateY(180deg)]" : ""
+                  }`}
+                >
                   {/* Front */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl border border-brand-beige-300/60 bg-white/70 px-4 py-5 text-center backface-hidden">
                     <img
@@ -538,7 +509,8 @@ export default function Home() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Royal Patronage */}
@@ -547,58 +519,49 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative mt-10 overflow-hidden rounded-3xl bg-[#f2e4c8] shadow-[0_30px_80px_rgba(56,42,23,0.12)]"
+            className="relative overflow-hidden rounded-3xl bg-[#fbeedd] shadow-[0_30px_80px_rgba(56,42,23,0.12)]"
           >
-            {/* faint fingerprint watermark, kept subtle behind everything */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.035]"
-            >
-              <img
-                src="/images/heroes/logo-mark.svg"
-                alt=""
-                className="h-[140%] w-auto"
-              />
-            </div>
-
-            {/* faceted star accent, top right */}
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 300 260"
-              className="pointer-events-none absolute -right-6 -top-6 h-56 w-56 text-brand-orange/40 sm:h-64 sm:w-64"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            >
-              <path d="M150 6 L172 96 L262 60 L188 120 L268 168 L176 156 L192 250 L146 168 L84 232 L108 148 L14 152 L96 106 L38 34 L128 78 Z" />
-            </svg>
-
-            <div className="relative grid grid-cols-1 gap-8 px-8 pt-16 pb-48 sm:grid-cols-[180px_1px_1fr] sm:items-start sm:gap-10 sm:px-14 sm:pt-20 sm:pb-64">
-              <div className="flex flex-col items-start gap-3">
-                <Crown className="text-brand-orange" size={26} strokeWidth={1.1} />
-                <p className="text-brand-orange text-xs font-semibold uppercase tracking-[0.3em]">
-                  Royal Patronage
-                </p>
+            <div className="relative grid grid-cols-1 items-center gap-10 px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-16">
+              {/* Petra artwork */}
+              <div className="mx-auto w-full max-w-sm lg:max-w-none">
+                <img
+                  src="/images/petra-royal-patronage.png"
+                  alt="Line illustration of Al-Khazneh in Petra, Jordan"
+                  className="h-auto max-h-64 w-full object-contain sm:max-h-none"
+                  style={{ aspectRatio: "471 / 560" }}
+                  width={471}
+                  height={560}
+                  loading="lazy"
+                />
               </div>
 
-              <span className="hidden h-full w-px bg-brand-orange/40 sm:block" />
+              {/* Content */}
+              <div className="flex flex-col items-start gap-5 text-left">
+                <div className="flex items-center gap-3">
+                  <Crown className="text-brand-orange" size={24} strokeWidth={1.1} aria-hidden="true" />
+                  <p className="text-brand-orange text-xs font-semibold uppercase tracking-[0.3em]">
+                    Royal Patronage
+                  </p>
+                </div>
 
-              <p className="relative max-w-2xl text-brand-beige-900 text-lg md:text-2xl font-normal leading-relaxed">
-                Classic Fashion is honoured to operate under the support of{" "}
-                <span className="text-brand-coral">HM King Abdullah II</span> and
-                the Royal Court of the Hashemite Kingdom of Jordan — a testament
-                to our contribution to the national economy.
-              </p>
+                <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-brand-beige-900 leading-tight">
+                  Proudly Supported by the Royal Court
+                </h2>
+
+                <span aria-hidden="true" className="h-px w-16 bg-brand-orange/40" />
+
+                <p className="max-w-xl text-brand-beige-900 text-base md:text-lg leading-relaxed">
+                  Classic Fashion is honoured to operate under the support of{" "}
+                  <span className="text-brand-coral">HM King Abdullah II</span> and
+                  the Royal Court of the Hashemite Kingdom of Jordan — a testament
+                  to our contribution to Jordan's national economy.
+                </p>
+
+                <p className="mt-2 w-full border-t border-brand-orange/20 pt-5 text-brand-beige-600 text-xs font-bold uppercase tracking-[0.25em]">
+                  The Hashemite Kingdom of Jordan
+                </p>
+              </div>
             </div>
-
-            {/* Al-Khazneh (Petra Treasury) line art, bottom edge */}
-            <PetraLineArt
-              className="pointer-events-none absolute inset-x-0 bottom-0"
-              color="#C8754F"
-              strokeWidth={1.3}
-              opacity={0.7}
-              style={{ height: "clamp(130px, 18vw, 260px)" }}
-            />
           </motion.div>
         </div>
       </section>
@@ -607,10 +570,6 @@ export default function Home() {
         items={faqs}
         title="Frequently Asked Questions"
         className="relative isolate overflow-hidden"
-        style={{
-          background:
-            'radial-gradient(ellipse 70% 60% at 10% 10%, rgba(217,191,143,0.55), transparent 55%), radial-gradient(ellipse 70% 60% at 95% 20%, rgba(44,158,143,0.16), transparent 55%), radial-gradient(ellipse 80% 70% at 50% 100%, rgba(163,61,35,0.14), transparent 55%)',
-        }}
       />
       </div>
       {/* end warm beige flow wrapper */}

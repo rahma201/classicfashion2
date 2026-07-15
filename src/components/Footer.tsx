@@ -31,9 +31,10 @@ const moreLinks = [
 export function Footer() {
   return (
     <footer
-      className="text-brand-beige-900"
+      className="relative isolate overflow-hidden text-brand-beige-900"
       style={{
-        background: 'linear-gradient(180deg, #d9bf8f 0%, #e2cd9e 12%, #ecdcb4 32%, #f4ead4 66%, #fbf7ef 100%)',
+        background:
+          'radial-gradient(ellipse 60% 45% at 30% 0%, rgba(214,177,109,0.08) 0%, transparent 70%), linear-gradient(180deg, #FAF3E5 0%, #FBF6EC 100%)',
       }}
     >
       {/* CTA band */}

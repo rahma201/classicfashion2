@@ -50,21 +50,22 @@ function Icon({ name }: { name: IconName }) {
 
 /* ---------------- count-up ---------------- */
 
-function useCountUp(target: number, start: boolean, duration = 1800) {
+function useCountUp(target: number, start: boolean, duration = 1800, interval = 5000) {
   const [val, setVal] = useState(0);
   useEffect(() => {
     if (!start) return;
     let raf: number;
     const t0 = performance.now();
     const tick = (t: number) => {
-      const p = Math.min((t - t0) / duration, 1);
+      const elapsed = (t - t0) % interval;
+      const p = Math.min(elapsed / duration, 1);
       const e = 1 - Math.pow(1 - p, 4);
       setVal(Math.round(target * e));
-      if (p < 1) raf = requestAnimationFrame(tick);
+      raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [start, target, duration]);
+  }, [start, target, duration, interval]);
   return val.toLocaleString("en-US");
 }
 
@@ -110,14 +111,6 @@ export default function ScaleMeetsPrecision() {
 
   return (
     <section className="cf-numbers" ref={ref}>
-      {/* watermark logo mark */}
-      <div
-        aria-hidden="true"
-        className="cf-watermark"
-      >
-        <img src="/images/heroes/logo-mark.svg" alt="" />
-      </div>
-
       <div className="cf-wrap">
         {/* ---------- left : copy ---------- */}
         <div className={`cf-copy ${inView ? "show" : ""}`}>
@@ -200,21 +193,6 @@ export default function ScaleMeetsPrecision() {
           overflow: hidden;
           padding: 100px 24px 120px;
           font-family: inherit;
-        }
-        .cf-watermark {
-          pointer-events: none;
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-        .cf-watermark img {
-          height: 85%;
-          width: auto;
-          opacity: 0.06;
         }
         .cf-wrap {
           max-width: 1240px;
@@ -420,7 +398,7 @@ export default function ScaleMeetsPrecision() {
         .cf-node {
           position: absolute;
           transform: translate(-50%, -50%) scale(0.7);
-          width: 128px;
+          width: clamp(92px, 26vw, 128px);
           padding: 14px 10px 12px;
           text-align: center;
           border-radius: 20px;
@@ -514,6 +492,24 @@ export default function ScaleMeetsPrecision() {
           }
           .cf-hub-num {
             font-size: 28px;
+          }
+          .cf-node {
+            padding: 10px 8px 9px;
+          }
+          .cf-node-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 6px;
+          }
+          .cf-node-icon svg {
+            width: 16px;
+            height: 16px;
+          }
+          .cf-node-num {
+            font-size: 18px;
+          }
+          .cf-node-lbl {
+            font-size: 10.5px;
           }
         }
       `}} />
