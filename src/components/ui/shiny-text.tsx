@@ -8,11 +8,15 @@ interface ShinyTextProps {
   className?: string;
   color?: string;
   shineColor?: string;
+  /** Optional list of colors to sweep through in sequence instead of a single shineColor. */
+  colors?: string[];
   spread?: number;
   yoyo?: boolean;
   pauseOnHover?: boolean;
   direction?: "left" | "right";
   delay?: number;
+  /** One-time delay (seconds) before the very first sweep starts — used to stagger multiple lines. */
+  startDelay?: number;
 }
 
 const ShinyText: React.FC<ShinyTextProps> = ({
@@ -22,15 +26,17 @@ const ShinyText: React.FC<ShinyTextProps> = ({
   className = "",
   color = "#b5b5b5",
   shineColor = "#ffffff",
+  colors,
   spread = 120,
   yoyo = false,
   pauseOnHover = false,
   direction = "left",
   delay = 0,
+  startDelay = 0,
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
-  const elapsedRef = useRef(0);
+  const elapsedRef = useRef(-startDelay * 1000);
   const lastTimeRef = useRef<number | null>(null);
   const directionRef = useRef(direction === "left" ? 1 : -1);
 
@@ -52,6 +58,11 @@ const ShinyText: React.FC<ShinyTextProps> = ({
     lastTimeRef.current = time;
 
     elapsedRef.current += deltaTime;
+
+    if (elapsedRef.current < 0) {
+      progress.set(directionRef.current === 1 ? 0 : 100);
+      return;
+    }
 
     // Animation goes from 0 to 100
     if (yoyo) {
@@ -92,8 +103,6 @@ const ShinyText: React.FC<ShinyTextProps> = ({
 
   useEffect(() => {
     directionRef.current = direction === "left" ? 1 : -1;
-    elapsedRef.current = 0;
-    progress.set(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);
 
@@ -108,8 +117,15 @@ const ShinyText: React.FC<ShinyTextProps> = ({
     if (pauseOnHover) setIsPaused(false);
   }, [pauseOnHover]);
 
+  const backgroundImage =
+    colors && colors.length > 0
+      ? `linear-gradient(${spread}deg, ${color} 0%, ${color} 20%, ${colors
+          .map((c, i) => `${c} ${20 + (i + 1) * (60 / colors.length)}%`)
+          .join(", ")}, ${color} 80%, ${color} 100%)`
+      : `linear-gradient(${spread}deg, ${color} 0%, ${color} 35%, ${shineColor} 50%, ${color} 65%, ${color} 100%)`;
+
   const gradientStyle: React.CSSProperties = {
-    backgroundImage: `linear-gradient(${spread}deg, ${color} 0%, ${color} 35%, ${shineColor} 50%, ${color} 65%, ${color} 100%)`,
+    backgroundImage,
     backgroundSize: "200% auto",
     WebkitBackgroundClip: "text",
     backgroundClip: "text",

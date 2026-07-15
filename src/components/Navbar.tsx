@@ -42,7 +42,7 @@ export function Navbar() {
 
   const scrollToTop = () => window.scrollTo(0, 0);
 
-  const linkClass = `nav-link-bar relative text-sm font-bold tracking-wide transition-colors duration-200 ${
+  const linkClass = `nav-link-bar relative text-base font-normal tracking-wide transition-colors duration-200 ${
     solidNav
       ? "text-brand-navy hover:text-brand-coral"
       : "text-brand-navy hover:text-brand-coral"
@@ -73,7 +73,7 @@ export function Navbar() {
           hide the toggle button underneath it once scrolled. */}
       <div
         className={`relative z-50 transition-all duration-300 ${
-          solidNav ? "bg-white/40 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-5"
+          solidNav ? "bg-white/60 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-5"
         }`}
       >
         <div className="max-w-[1160px] mx-auto px-6 flex items-center justify-between lg:justify-center">
@@ -97,8 +97,8 @@ export function Navbar() {
               onClick={scrollToTop}
               className={`text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-lg transition-all ${
                 solidNav
-                  ? "bg-brand-coral text-white hover:bg-opacity-90"
-                  : "bg-brand-coral text-white hover:bg-brand-navy"
+                  ? "bg-brand-teal text-white hover:bg-opacity-90"
+                  : "bg-brand-teal text-white hover:bg-brand-navy"
               }`}
             >
               Request a Quote
@@ -149,7 +149,7 @@ export function Navbar() {
               aria-hidden="true"
               className="absolute inset-0 -z-10 backdrop-blur-lg bg-brand-beige-300/60"
             />
-         
+
 
             <motion.nav
               initial="hidden"
@@ -203,7 +203,7 @@ export function Navbar() {
                     setIsOpen(false);
                     scrollToTop();
                   }}
-                  className="block w-full rounded-full bg-gradient-to-r from-brand-orange to-brand-coral py-4 text-center text-sm font-bold uppercase tracking-widest text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
+                  className="block w-full rounded-full bg-brand-teal py-4 text-center text-sm font-bold uppercase tracking-widest text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
                 >
                   Request a Quote
                 </Link>

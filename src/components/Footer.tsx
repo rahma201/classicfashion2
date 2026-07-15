@@ -31,19 +31,19 @@ const moreLinks = [
 export function Footer() {
   return (
     <footer
-      className="text-white"
+      className="text-brand-beige-900"
       style={{
-        background: 'linear-gradient(150deg, #382a17 0%, #4a3620 45%, #2f2213 100%)',
+        background: 'linear-gradient(180deg, #d9bf8f 0%, #e2cd9e 12%, #ecdcb4 32%, #f4ead4 66%, #fbf7ef 100%)',
       }}
     >
       {/* CTA band */}
-      <div className="border-b border-white/10 py-16">
+      <div className="border-b border-brand-beige-900/10 py-16">
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="text-brand-orange text-xs font-bold uppercase tracking-widest mb-2">
               Ready to Partner?
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-beige-900 leading-tight">
               Let's build the world's next <br className="hidden md:block" />
               <span className="text-brand-coral">iconic garment together.</span>
             </h2>
@@ -63,16 +63,16 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <img
-              src="/images/heroes/subpage_1783290884398.svg"
+              src="/images/heroes/homepage_1783290884398.svg"
               alt="Classic Fashion"
-              className="h-20 w-auto mb-6 opacity-90"
+              className="h-20 w-auto mb-6"
             />
-            <p className="text-white/70 text-sm leading-relaxed max-w-sm">
+            <p className="text-brand-beige-600 text-sm leading-relaxed max-w-sm">
               The largest apparel manufacturer in the MENA region. 550,000
               garments per day. 36,000 team members. Headquartered in Jordan,
               trusted by the world.
             </p>
-            <p className="mt-4 text-brand-sand italic text-sm">
+            <p className="mt-4 text-brand-coral italic text-sm">
               "a touch changes everything"
             </p>
 
@@ -88,7 +88,7 @@ export function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-coral transition-colors"
+                  className="w-9 h-9 rounded-full bg-brand-beige-900/10 flex items-center justify-center hover:bg-brand-coral hover:text-white transition-colors"
                 >
                   <Icon size={16} />
                 </a>
@@ -98,7 +98,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-sm uppercase tracking-widest mb-5 text-white/50">
+            <h3 className="font-bold text-sm uppercase tracking-widest mb-5 text-brand-beige-900/60">
               Company
             </h3>
             <ul className="flex flex-col gap-3">
@@ -106,7 +106,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white/75 hover:text-brand-coral transition-colors text-sm"
+                    className="text-brand-beige-700 hover:text-brand-coral transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -117,7 +117,7 @@ export function Footer() {
 
           {/* More */}
           <div>
-            <h3 className="font-bold text-sm uppercase tracking-widest mb-5 text-white/50">
+            <h3 className="font-bold text-sm uppercase tracking-widest mb-5 text-brand-beige-900/60">
               More
             </h3>
             <ul className="flex flex-col gap-3">
@@ -125,7 +125,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white/75 hover:text-brand-coral transition-colors text-sm"
+                    className="text-brand-beige-700 hover:text-brand-coral transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -136,14 +136,14 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-sm uppercase tracking-widest mb-5 text-white/50">
+            <h3 className="font-bold text-sm uppercase tracking-widest mb-5 text-brand-beige-900/60">
               Contact
             </h3>
-            <address className="not-italic flex flex-col gap-4 text-white/75 text-sm">
+            <address className="not-italic flex flex-col gap-4 text-brand-beige-700 text-sm">
               <div className="flex gap-3">
                 <MapPin size={18} className="flex-shrink-0 mt-0.5 text-brand-coral" />
                 <div>
-                  <div className="font-semibold text-white mb-1">
+                  <div className="font-semibold text-brand-beige-900 mb-1">
                     Headquarters
                   </div>
                   Al Hassan Industrial Estate
@@ -156,7 +156,7 @@ export function Footer() {
               <div className="flex gap-3">
                 <Phone size={18} className="flex-shrink-0 mt-0.5 text-brand-coral" />
                 <div>
-                  <div className="font-semibold text-white mb-1">Phone</div>
+                  <div className="font-semibold text-brand-beige-900 mb-1">Phone</div>
                   <a
                     href="tel:+96227391369"
                     className="hover:text-brand-coral transition-colors"
@@ -175,7 +175,7 @@ export function Footer() {
               <div className="flex gap-3">
                 <Mail size={18} className="flex-shrink-0 mt-0.5 text-brand-coral" />
                 <div>
-                  <div className="font-semibold text-white mb-1">Email</div>
+                  <div className="font-semibold text-brand-beige-900 mb-1">Email</div>
                   <a
                     href="mailto:info@classicfashion.com"
                     className="hover:text-brand-coral transition-colors block"
@@ -195,19 +195,19 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-xs">
+        <div className="border-t border-brand-beige-900/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-brand-beige-900/50 text-xs">
           <p>
             © 2026 Classic Fashion Apparel Industry Ltd. Co. All Rights
             Reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-brand-coral transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-brand-coral transition-colors">
               Terms of Service
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-brand-coral transition-colors">
               Cookie Policy
             </a>
           </div>

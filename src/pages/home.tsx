@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { StatsGrid } from "@/components/StatsGrid";
+import ScaleMeetsPrecision from "@/components/ScaleMeetsPrecision";
+import PetraLineArt from "@/components/PetraLineArt";
 import { WorldMap } from "@/components/WorldMap";
 import { BlogCard } from "@/components/BlogCard";
 import { FaqSection, type FaqItem } from "@/components/FaqSection";
@@ -84,7 +85,7 @@ export default function Home() {
           className="absolute inset-0 z-1 backdrop-blur-sm"
           style={{
             background:
-              'linear-gradient(180deg, rgba(14,48,60,0.32) 32%, rgba(14,48,60,0.18) 52%, rgba(251,247,239,0.5) 80%, #fbf7ef 100%)',
+              'linear-gradient(180deg, rgba(14,48,60,0.32) 32%, rgba(14,48,60,0.18) 52%, rgba(251,247,239,0.5) 80%, #fbf7ef 100%)', // matches CTA palette base
           }}
         />
 
@@ -120,28 +121,56 @@ export default function Home() {
               initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative font-display italic text-2xl md:text-4xl font-light tracking-wide text-brand-beige-50 mb-6"
+              className="relative mb-6"
             >
-              "A touch changes everything"
+              <ShinyText
+                text={'"A touch changes everything"'}
+                color="#fbf7ef"
+                colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
+                speed={2}
+                spread={110}
+                startDelay={0}
+                delay={7.5}
+                className="font-display italic text-2xl md:text-4xl font-light tracking-wide align-baseline"
+              />
             </motion.p>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15 }}
-              className="relative font-display text-2xl md:text-4xl lg:text-5xl font-black text-brand-beige-100 leading-tight mb-8 [text-wrap:balance]"
+              className="relative mb-8 flex flex-col items-center"
             >
-              Classic Fashion is an integrated giant textile company that
-              produces for the{" "}
               <ShinyText
-                text="world's leading brands"
-                color="#F5AC1B"
-                shineColor="#fbf7ef"
+                text="Classic Fashion is an integrated giant"
+                color="#fbf7ef"
+                colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
                 speed={2.5}
                 spread={110}
-                className="text-2xl md:text-4xl lg:text-5xl font-display font-black align-baseline"
+                startDelay={2}
+                delay={7}
+                className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
               />
-              .
+              <ShinyText
+                text="textile company that produces"
+                color="#fbf7ef"
+                colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
+                speed={2.5}
+                spread={110}
+                startDelay={4.5}
+                delay={7}
+                className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
+              />
+              <ShinyText
+                text="for the world's leading brands."
+                color="#fbf7ef"
+                colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
+                speed={2.5}
+                spread={110}
+                startDelay={7}
+                delay={7}
+                className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
+              />
             </motion.h1>
 
             <motion.div
@@ -204,123 +233,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* World Map Section */}
-      <WorldMap />
-
-      {/* Warm beige flow — one continuous background spanning Stats → Partners → Gallery → Sustainability → Blog, so section boundaries blend instead of cutting */}
+      {/* Warm beige flow — one continuous background spanning World Map → Stats → Partners → Blog → CTA → FAQ, so section boundaries blend instead of cutting */}
       <div className="relative isolate overflow-hidden">
         <div
           className="absolute inset-0 -z-20"
           style={{
             background:
-              'linear-gradient(180deg, #fbf7ef 0%, #f4ead4 10%, #ecdcb4 22%, #f4ead4 34%, #fbf7ef 46%, #f4ead4 58%, #ecdcb4 70%, #f4ead4 84%, #fbf7ef 100%)',
+              'linear-gradient(180deg, #fbf7ef 0%, #f6eedd 25%, #f0e4c8 50%, #e8d7ae 75%, #d9bf8f 100%)',
           }}
         />
-        <div
-          className="pointer-events-none absolute left-[-8%] top-[4%] -z-10 h-[460px] w-[460px] rounded-full opacity-50 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(163,61,35,0.18), transparent 70%)' }}
-        />
-        <div
-          className="pointer-events-none absolute right-[-10%] top-[32%] -z-10 h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(44,158,143,0.16), transparent 70%)' }}
-        />
-        <div
-          className="pointer-events-none absolute left-[-6%] top-[64%] -z-10 h-[420px] w-[420px] rounded-full opacity-45 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.2), transparent 70%)' }}
-        />
-        <div
-          className="pointer-events-none absolute right-[-8%] top-[88%] -z-10 h-[380px] w-[380px] rounded-full opacity-40 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(163,61,35,0.14), transparent 70%)' }}
-        />
 
-      {/* Stats Section */}
-      <section className="relative py-28">
-        {/* Giant watermark logo mark — sits behind the "Scale Meets Precision" copy */}
+        {/* World Map Section */}
+        <WorldMap />
         <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-0 -z-10 hidden w-[42%] items-center justify-center select-none overflow-hidden lg:flex"
-        >
-          <img
-            src="/images/heroes/logo-mark.svg"
-            alt=""
-            className="h-[60vh] w-auto opacity-[0.07]"
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center select-none overflow-hidden lg:hidden"
-        >
-          <img
-            src="/images/heroes/logo-mark.svg"
-            alt=""
-            className="h-[40vh] w-auto opacity-[0.07]"
-          />
-        </div>
-        {/* Diagonal accent divider */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-[30%] -z-10 hidden w-px bg-gradient-to-b from-transparent via-brand-beige-900/10 to-transparent lg:block"
+          className="pointer-events-none absolute left-[-8%] top-[4%] -z-10 h-[460px] w-[460px] rounded-full opacity-25 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.16), transparent 70%)' }}
         />
-
-        <div className="container relative mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="lg:col-span-4"
-            >
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-10 bg-brand-coral" />
-                <p className="text-brand-coral text-xs font-bold uppercase tracking-[0.25em]">
-                  By The Numbers
-                </p>
-              </div>
-              <h2 className="font-display text-4xl md:text-6xl font-black text-brand-beige-900 mb-6 leading-[0.95] tracking-tight">
-                Scale Meets{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-br from-brand-coral via-[#c2542f] to-brand-orange bg-clip-text text-transparent">
-                    Precision
-                  </span>
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 200 12"
-                    className="absolute -bottom-2 left-0 w-full text-brand-orange/60"
-                  >
-                    <path
-                      d="M2 8 C 50 2, 150 2, 198 8"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
-              </h2>
-              <p className="text-brand-beige-600 text-lg leading-relaxed mb-8 max-w-md">
-                Classic Fashion is a proud global corporation headquartered in
-                Jordan. It is the largest apparel manufacturer in the MENA
-                region, delivering unparalleled volume without compromising
-                quality.
-              </p>
-              <Link
-                href="/who-we-are"
-                className="group inline-flex items-center gap-2 bg-brand-beige-900 text-brand-beige-50 font-bold px-8 py-4 rounded-full hover:bg-brand-coral transition-all uppercase tracking-wider text-sm shadow-[0_14px_34px_rgba(56,42,23,0.25)]"
-              >
-                Discover Our Story
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
-            </motion.div>
-
-            <div className="lg:col-span-8">
-              <StatsGrid />
-            </div>
-          </div>
-        </div>
-      </section>
+        <div
+          className="pointer-events-none absolute right-[-8%] top-[88%] -z-10 h-[380px] w-[380px] rounded-full opacity-25 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(245,172,27,0.14), transparent 70%)' }}
+        />
 
       {/* Our Partners */}
       <section className="relative py-24" aria-labelledby="home-partners-heading">
@@ -352,9 +284,6 @@ export default function Home() {
           </motion.div>
 
           <div className="partner-slider relative overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-brand-beige-100 to-transparent sm:w-28" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-brand-beige-100 to-transparent sm:w-28" />
-
             <div className="partner-slider-track">
               {partnerSlides.map((partner, i) => (
                 <div key={`${partner.name}-${i}`} className="partner-logo-card">
@@ -369,221 +298,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="border-t border-brand-beige-300/60 my-16 max-w-3xl mx-auto" />
-
-          {/* Banking / Support System */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center mb-10"
-          >
-            <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-3">
-              Financial Support System
-            </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-brand-beige-900">
-              Backed by World-Class Financial Institutions
-            </h3>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
-            {[
-              { name: "UK Export Finance", file: "uk-export-finance.png" },
-              { name: "HSBC", file: "hsbc.png" },
-              { name: "Mashreq Bank", file: "mashreq-bank.png" },
-              { name: "Commercial Bank of Dubai", file: "commercial-bank-of-dubai.png" },
-              { name: "Arab Jordan Investment Bank", file: "arab-jordan-investment-bank.png" },
-              { name: "Bank Al Etihad", file: "bank-al-etihad.png" },
-            ].map((bank, i) => (
-              <motion.div
-                key={bank.name}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                className="flex flex-col items-center gap-3 px-4 py-5 text-center transition-all"
-              >
-                <img
-                  src={`/images/support/${bank.file}`}
-                  alt={`${bank.name} logo`}
-                  className="h-32 w-auto max-w-full object-contain"
-                  loading="lazy"
-                />
-                <span className="text-brand-beige-900 font-semibold text-xs tracking-wide leading-snug">
-                  {bank.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Royal Patronage */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="relative mt-10 overflow-hidden rounded-3xl px-8 py-16 md:py-20 text-center shadow-[0_30px_80px_rgba(56,42,23,0.25)]"
-            style={{
-              background:
-                'radial-gradient(ellipse 80% 80% at 50% 0%, rgba(245,172,27,0.35), transparent 60%), radial-gradient(ellipse 70% 70% at 15% 100%, rgba(163,61,35,0.3), transparent 60%), radial-gradient(ellipse 70% 70% at 85% 100%, rgba(44,158,143,0.2), transparent 60%), linear-gradient(150deg, #2f2213 0%, #4a3620 45%, #382a17 80%, #241a0d 100%)',
-            }}
-          >
-            {/* gold border frame */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-3 rounded-2xl border border-brand-orange/30"
-            />
-            {/* watermark logo */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.06]"
-            >
-              <img
-                src="/images/heroes/logo-mark.svg"
-                alt=""
-                className="h-[130%] w-auto"
-              />
-            </div>
-
-            <div className="relative">
-              <div className="mb-6 flex items-center justify-center gap-4">
-                <span className="h-px w-14 bg-gradient-to-r from-transparent to-brand-orange" />
-                <Crown className="text-brand-orange" size={30} strokeWidth={1.6} />
-                <span className="h-px w-14 bg-gradient-to-l from-transparent to-brand-orange" />
-              </div>
-
-              <p className="text-brand-orange text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-4">
-                Royal Patronage
-              </p>
-
-              <p className="max-w-3xl mx-auto text-white text-xl md:text-3xl font-display font-medium leading-snug">
-                Classic Fashion is honoured to operate under the support of{" "}
-                <span className="font-black bg-gradient-to-r from-brand-orange via-brand-beige-100 to-brand-orange bg-clip-text text-transparent">
-                  HM King Abdullah II
-                </span>{" "}
-                and the Royal Court of the Hashemite Kingdom of Jordan — a
-                testament to our contribution to the national economy.
-              </p>
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="relative py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-beige-900">
-              Our People & Craft
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden group"
-            >
-              <img
-                src="/images/heroes/ChatGPT Image Jul 9, 2026, 10_39_18 AM (2).png"
-                alt="Factory Workers"
-                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 to-transparent flex items-end p-8">
-                <h3 className="text-white text-2xl font-bold">
-                  Empowering 36,000+ Team Members
-                </h3>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden group"
-            >
-              <img
-                src="/images/heroes/ChatGPT Image Jul 9, 2026, 10_07_17 AM.png"
-                alt="Embroidery Machine"
-                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 to-transparent flex items-end p-8">
-                <h3 className="text-white text-2xl font-bold">
-                  Precision at Industrial Scale
-                </h3>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sustainability Teaser */}
-      <section className="relative py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-6 -z-10 opacity-70 blur-3xl"
-                style={{
-                  background:
-                    'radial-gradient(ellipse 70% 70% at 30% 20%, rgba(245,172,27,0.45), transparent 65%), radial-gradient(ellipse 70% 70% at 80% 80%, rgba(44,158,143,0.4), transparent 65%)',
-                }}
-              />
-              <div className="absolute -inset-2 -z-[5] bg-gradient-to-br from-brand-orange via-brand-coral to-brand-teal opacity-80" />
-              <img
-                src="/images/heroes/sustainability-hero.png"
-                alt="Solar Panels"
-                className="relative w-full h-auto object-cover shadow-[0_30px_70px_rgba(56,42,23,0.35)]"
-              />
-            </motion.div>
-
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-brand-beige-900 mb-6">
-                Building a <span className="text-brand-teal">Sustainable</span>{" "}
-                Future
-              </h2>
-              <p className="text-lg text-brand-beige-600 mb-8 leading-relaxed">
-                At Classic Fashion, sustainability isn't just a corporate
-                initiative — it's woven into our daily operations. From our
-                extensive solar energy installations to our commitment to UN
-                Sustainable Development Goals, we are building a greener supply
-                chain for the world's top brands.
-              </p>
-              <Link
-                href="/sustainability"
-                className="inline-block bg-brand-teal text-white font-bold px-8 py-4 rounded hover:bg-opacity-90 transition-all uppercase tracking-wider text-sm shadow-lg"
-              >
-                Learn More
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* Stats Section */}
+      <ScaleMeetsPrecision />
 
       {/* Blog Highlights */}
       <section className="relative py-24">
@@ -597,7 +316,7 @@ export default function Home() {
           >
             <div>
               <h2 className="text-4xl font-bold text-brand-beige-900">
-                Industry Insights
+                Blog Posts
               </h2>
             </div>
 
@@ -654,32 +373,19 @@ export default function Home() {
           </div>
         </div>
       </section>
-      </div>
-      {/* end warm beige flow wrapper */}
 
       {/* B2B CTA */}
-      <section
-        className="relative isolate overflow-hidden py-28"
-        style={{
-          background: 'linear-gradient(115deg, #fbf7ef 0%, #f4ead4 32%, #ecdcb4 55%, #e2cd9e 78%, #d9bf8f 100%)',
-        }}
-      >
+      <section className="relative isolate overflow-hidden py-28">
         {/* angular coral/orange accent slab */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-1/4 top-0 -z-0 h-full w-[70%] opacity-80"
           style={{
             background: 'linear-gradient(115deg, transparent 42%, rgba(163,61,35,0.28) 55%, rgba(231,112,81,0.3) 70%, rgba(245,172,27,0.32) 100%)',
+            maskImage: 'linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%)',
           }}
         />
-
-        {/* giant decorative quote mark */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-6 top-4 font-display text-[16rem] md:text-[22rem] leading-none text-brand-beige-900/[0.06] select-none"
-        >
-          "
-        </span>
 
         <div className="container relative z-10 mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -750,15 +456,164 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Banking / Support System + Royal Patronage */}
+      <section className="relative py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-3">
+              Financial Support System
+            </p>
+            <h3 className="text-2xl md:text-3xl font-bold text-brand-beige-900">
+              Backed by World-Class Financial Institutions
+            </h3>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+            {[
+              {
+                name: "UK Export Finance",
+                file: "uk-export-finance.png",
+                summary: "The UK's export credit agency, backing trade finance so Classic Fashion can scale production for international buyers with confidence.",
+              },
+              {
+                name: "HSBC",
+                file: "hsbc.png",
+                summary: "One of the world's largest banking groups, supporting our global trade operations and cross-border payments across every export market.",
+              },
+              {
+                name: "Mashreq Bank",
+                file: "mashreq-bank.png",
+                summary: "A leading regional bank in the Gulf, providing trade finance and treasury solutions that keep our supply chain moving smoothly.",
+              },
+              {
+                name: "Commercial Bank of Dubai",
+                file: "commercial-bank-of-dubai.png",
+                summary: "A trusted UAE financial institution supporting working capital and corporate banking needs across our regional operations.",
+              },
+              {
+                name: "Arab Jordan Investment Bank",
+                file: "arab-jordan-investment-bank.png",
+                summary: "A leading Jordanian bank providing local financing and corporate banking support that underpins our headquarters operations.",
+              },
+              {
+                name: "Bank Al Etihad",
+                file: "bank-al-etihad.png",
+                summary: "A major Jordanian bank supporting our day-to-day financial operations, payroll, and local supplier relationships.",
+              },
+            ].map((bank, i) => (
+              <motion.div
+                key={bank.name}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                className="group perspective-distant"
+              >
+                <div className="relative h-44 w-full transform-3d transition-transform duration-500 group-hover:transform-[rotateY(180deg)]">
+                  {/* Front */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl border border-brand-beige-300/60 bg-white/70 px-4 py-5 text-center backface-hidden">
+                    <img
+                      src={`/images/support/${bank.file}`}
+                      alt={`${bank.name} logo`}
+                      className="h-16 w-auto max-w-full object-contain"
+                      loading="lazy"
+                    />
+                    <span className="text-brand-beige-900 font-semibold text-xs tracking-wide leading-snug">
+                      {bank.name}
+                    </span>
+                  </div>
+
+                  {/* Back */}
+                  <div className="absolute inset-0 flex items-center justify-center rounded-2xl border border-brand-teal/30 bg-brand-teal/10 px-4 py-5 text-center backface-hidden transform-[rotateY(180deg)]">
+                    <p className="text-brand-beige-900 text-[11px] leading-relaxed">
+                      {bank.summary}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Royal Patronage */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="relative mt-10 overflow-hidden rounded-3xl bg-[#f2e4c8] shadow-[0_30px_80px_rgba(56,42,23,0.12)]"
+          >
+            {/* faint fingerprint watermark, kept subtle behind everything */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.035]"
+            >
+              <img
+                src="/images/heroes/logo-mark.svg"
+                alt=""
+                className="h-[140%] w-auto"
+              />
+            </div>
+
+            {/* faceted star accent, top right */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 300 260"
+              className="pointer-events-none absolute -right-6 -top-6 h-56 w-56 text-brand-orange/40 sm:h-64 sm:w-64"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.2"
+            >
+              <path d="M150 6 L172 96 L262 60 L188 120 L268 168 L176 156 L192 250 L146 168 L84 232 L108 148 L14 152 L96 106 L38 34 L128 78 Z" />
+            </svg>
+
+            <div className="relative grid grid-cols-1 gap-8 px-8 pt-16 pb-48 sm:grid-cols-[180px_1px_1fr] sm:items-start sm:gap-10 sm:px-14 sm:pt-20 sm:pb-64">
+              <div className="flex flex-col items-start gap-3">
+                <Crown className="text-brand-orange" size={26} strokeWidth={1.1} />
+                <p className="text-brand-orange text-xs font-semibold uppercase tracking-[0.3em]">
+                  Royal Patronage
+                </p>
+              </div>
+
+              <span className="hidden h-full w-px bg-brand-orange/40 sm:block" />
+
+              <p className="relative max-w-2xl text-brand-beige-900 text-lg md:text-2xl font-normal leading-relaxed">
+                Classic Fashion is honoured to operate under the support of{" "}
+                <span className="text-brand-coral">HM King Abdullah II</span> and
+                the Royal Court of the Hashemite Kingdom of Jordan — a testament
+                to our contribution to the national economy.
+              </p>
+            </div>
+
+            {/* Al-Khazneh (Petra Treasury) line art, bottom edge */}
+            <PetraLineArt
+              className="pointer-events-none absolute inset-x-0 bottom-0"
+              color="#C8754F"
+              strokeWidth={1.3}
+              opacity={0.7}
+              style={{ height: "clamp(130px, 18vw, 260px)" }}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       <FaqSection
         items={faqs}
         title="Frequently Asked Questions"
         className="relative isolate overflow-hidden"
         style={{
           background:
-            'radial-gradient(ellipse 70% 60% at 10% 10%, rgba(217,191,143,0.55), transparent 55%), radial-gradient(ellipse 70% 60% at 95% 20%, rgba(44,158,143,0.16), transparent 55%), radial-gradient(ellipse 80% 70% at 50% 100%, rgba(163,61,35,0.14), transparent 55%), linear-gradient(160deg, #f4ead4 0%, #ecdcb4 45%, #f4ead4 100%)',
+            'radial-gradient(ellipse 70% 60% at 10% 10%, rgba(217,191,143,0.55), transparent 55%), radial-gradient(ellipse 70% 60% at 95% 20%, rgba(44,158,143,0.16), transparent 55%), radial-gradient(ellipse 80% 70% at 50% 100%, rgba(163,61,35,0.14), transparent 55%)',
         }}
       />
+      </div>
+      {/* end warm beige flow wrapper */}
 
       <style
         dangerouslySetInnerHTML={{

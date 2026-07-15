@@ -390,9 +390,6 @@ export function GlobalPresenceMap() {
 
   return (
     <section className="relative isolate overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
-      <div
-        className="absolute inset-0 -z-20 bg-linear-to-b from-brand-beige-50 via-brand-beige-50/80 to-[#FBF6ED]"
-      />
       
       <div
         aria-hidden="true"
