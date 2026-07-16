@@ -15,14 +15,11 @@ const fadeInUp = {
 
 const partners = [
   { name: "Adidas", file: "adidas.png" },
-  { name: "Under Armour", file: "under-armour.png" },
   { name: "Fabletics", file: "fabletics.png" },
-  { name: "Victoria's Secret", file: "victorias-secret.png" },
   { name: "Walmart", file: "walmart.png" },
   { name: "American Eagle", file: "american-eagle.png" },
   { name: "Michael Kors", file: "michael-kors.png" },
   { name: "Gap", file: "gap.png" },
-  { name: "Zaecy", file: "zaecy.png" },
 ];
 
 const faqs: FaqItem[] = [
@@ -126,21 +123,18 @@ export default function Home() {
               transition={{ duration: 0.9, delay: 0.15 }}
               className="relative mb-8 flex flex-col items-center"
             >
-              <span className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight text-brand-beige-50">
-                An integrated textile giant
-              </span>
-              <span className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight text-brand-beige-50">
-                manufacturing at scale
+              <span className="block text-lg md:text-2xl lg:text-3xl font-display font-black leading-tight text-brand-beige-50">
+                Integrated textile giant, manufacturing at scale
               </span>
               <ShinyText
-                text="for the world's leading brands."
+                text="trusted by the world's most iconic brands."
                 color="#fbf7ef"
                 colors={["#F5AC1B", "#E77051", "#2C9E8F"]}
                 speed={5}
                 spread={110}
                 startDelay={0.5}
                 delay={4}
-                className="block text-2xl md:text-4xl lg:text-5xl font-display font-black leading-tight"
+                className="block text-lg md:text-2xl lg:text-3xl font-display font-black leading-tight"
               />
             </motion.h1>
 
@@ -253,7 +247,7 @@ export default function Home() {
                   <img
                     src={`/images/partners/${partner.file}`}
                     alt={`${partner.name} partner logo`}
-                    className="max-h-14 w-auto object-contain sm:max-h-16"
+                    className="max-h-24 w-auto object-contain sm:max-h-28"
                     loading={i < partners.length ? "eager" : "lazy"}
                   />
                 </div>
@@ -601,8 +595,8 @@ export default function Home() {
 
             .partner-logo-card {
               flex: 0 0 auto;
-              width: clamp(180px, 18vw, 255px);
-              height: 86px;
+              width: clamp(200px, 20vw, 290px);
+              height: 130px;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -614,8 +608,8 @@ export default function Home() {
               }
 
               .partner-logo-card {
-                width: 160px;
-                height: 76px;
+                width: 170px;
+                height: 100px;
               }
             }
 

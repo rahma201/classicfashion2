@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 471 560" width="471" height="560" role="img" aria-labelledby="jordanMapTitle">
+  <title id="jordanMapTitle">Line illustration of the map of Jordan with landmark markers</title>
+
+  <defs>
+    <style>
+      .stroke { fill: none; stroke: #c27e4e; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+      .stroke-thin { fill: none; stroke: #c27e4e; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .fill-soft { fill: #c27e4e; }
+      .dot { fill: #c27e4e; }
+      .label { font-family: Georgia, 'Times New Roman', serif; fill: #a5673c; }
+      .label-main { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; letter-spacing: 0.08em; fill: #8a5230; }
+    </style>
+  </defs>
+
+  <!-- faint 8-pointed star watermark -->
+  <g opacity="0.14" transform="translate(360,140)">
+    <path class="fill-soft" d="M0,-70 L14,-14 L70,0 L14,14 L0,70 L-14,14 L-70,0 L-14,-14 Z" />
+  </g>
+
+  <!-- Jordan country outline (stylized) -->
+  <path class="stroke"
+    d="M118,150
+       L150,120 L165,95 L188,88 L205,100
+       L215,80 L235,70 L255,88 L270,110
+       L300,118 L330,140 L355,168 L372,190
+       L358,210 L330,215 L305,235 L318,255
+       L300,270 L282,300 L288,325
+       L268,345 L255,375 L262,400
+       L240,420 L228,450 L205,470
+       L182,462 L168,440 L150,430
+       L140,405 L155,385 L145,360
+       L128,345 L132,318 L112,300
+       L118,272 L100,250 L108,225
+       L95,200 L110,178 Z"
+  />
+
+  <!-- subtle interior contour lines for texture -->
+  <path class="stroke-thin" opacity="0.5" d="M150,160 L180,150 L210,160 L240,150" />
+  <path class="stroke-thin" opacity="0.4" d="M140,250 L170,240 L200,255 L225,245" />
+  <path class="stroke-thin" opacity="0.4" d="M160,350 L190,340 L215,355" />
+
+  <!-- flag pole planted near Amman -->
+  <line class="stroke-thin" x1="205" y1="100" x2="205" y2="35" />
+  <!-- flag (black / white / green stripes with red triangle and star) -->
+  <g transform="translate(205,38)">
+    <path class="stroke-thin" d="M0,0 L60,6 L0,14" />
+    <rect x="0" y="0" width="60" height="4.7" fill="none" stroke="#c27e4e" stroke-width="1.2" />
+    <rect x="0" y="4.7" width="60" height="4.6" fill="none" stroke="#c27e4e" stroke-width="1.2" />
+    <rect x="0" y="9.3" width="60" height="4.7" fill="none" stroke="#c27e4e" stroke-width="1.2" />
+    <path class="stroke-thin" d="M0,0 L22,7 L0,14 Z" />
+    <path class="fill-soft" opacity="0.6" d="M6,7 L8.2,9.2 L11,7.4 L9.4,10.4 L12,12 L8.6,11.8 L8,15 L7.2,11.8 L4,12.2 L6.6,10.2 L5,7.4 Z" />
+  </g>
+
+  <!-- landmark markers -->
+  <g>
+    <circle class="dot" cx="205" cy="118" r="3.2" />
+    <text class="label" x="213" y="122" font-size="13">Amman</text>
+    <text class="label" x="213" y="136" font-size="10" opacity="0.85">عمّان</text>
+  </g>
+
+  <g>
+    <circle class="dot" cx="150" cy="330" r="3.2" />
+    <text class="label" x="158" y="334" font-size="13">Petra</text>
+    <text class="label" x="158" y="348" font-size="10" opacity="0.85">البتراء</text>
+  </g>
+
+  <g>
+    <circle class="dot" cx="190" cy="385" r="3.2" />
+    <text class="label" x="198" y="389" font-size="13">Wadi Rum</text>
+    <text class="label" x="198" y="403" font-size="10" opacity="0.85">وادي رم</text>
+  </g>
+
+  <g>
+    <circle class="dot" cx="168" cy="452" r="3.2" />
+    <text class="label" x="176" y="456" font-size="13">Aqaba</text>
+    <text class="label" x="176" y="470" font-size="10" opacity="0.85">العقبة</text>
+  </g>
+
+  <!-- JORDAN wordmark -->
+  <text class="label-main" x="118" y="255" font-size="30">JORDAN</text>
+  <text class="label" x="118" y="278" font-size="14" opacity="0.85">الأردن</text>
+</svg>
