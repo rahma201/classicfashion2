@@ -63,7 +63,7 @@ export function Navbar() {
         <img
           src="/images/heroes/homepage_1783290884398.svg"
           alt="Classic Fashion"
-          className={` w-auto transition-all duration-300 ${solidNav ? "h-14" : "h-24"}`}
+          className={` w-auto transition-all duration-300 ${solidNav ? "h-11" : "h-20"}`}
         />
       </Link>
 
@@ -114,7 +114,7 @@ export function Navbar() {
             <img
               src="/images/heroes/homepage_1783290884398.svg"
               alt="Classic Fashion"
-              className="h-14 w-auto"
+              className="h-11 w-auto"
             />
           </Link>
 

@@ -15,11 +15,11 @@ const fadeInUp = {
 
 const partners = [
   { name: "Adidas", file: "adidas.png" },
-  { name: "Fabletics", file: "fabletics.png" },
-  { name: "Walmart", file: "walmart.png" },
-  { name: "American Eagle", file: "american-eagle.png" },
-  { name: "Michael Kors", file: "michael-kors.png" },
-  { name: "Gap", file: "gap.png" },
+  { name: "Adidas", file: "adidas.png" },
+  { name: "Adidas", file: "adidas.png" },
+  { name: "Adidas", file: "adidas.png" },
+  { name: "Adidas", file: "adidas.png" },
+  { name: "Adidas", file: "adidas.png" },
 ];
 
 const faqs: FaqItem[] = [
@@ -515,14 +515,16 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative overflow-hidden rounded-3xl bg-[#fbeedd] shadow-[0_30px_80px_rgba(56,42,23,0.12)]"
           >
-            <div className="relative grid grid-cols-1 items-center gap-10 px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-16">
+            <div className="relative grid grid-cols-1 items-center gap-4 p-0 lg:grid-cols-2 lg:gap-8">
               {/* Petra artwork */}
-              <div className="mx-auto w-full max-w-sm lg:max-w-none">
+              <div
+                className="mx-auto w-full max-w-sm overflow-hidden lg:max-w-none"
+                style={{ aspectRatio: "471 / 480" }}
+              >
                 <img
                   src="/images/petra-royal-patronage.png"
                   alt="Line illustration of Al-Khazneh in Petra, Jordan"
-                  className="h-auto max-h-64 w-full object-contain sm:max-h-none"
-                  style={{ aspectRatio: "471 / 560" }}
+                  className="h-full w-full object-cover object-bottom"
                   width={471}
                   height={560}
                   loading="lazy"
@@ -530,7 +532,7 @@ export default function Home() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col items-start gap-5 text-left">
+              <div className="flex flex-col items-start gap-5 px-6 pb-6 text-left sm:px-10 sm:pb-8 lg:px-0 lg:pb-0">
                 <div className="flex items-center gap-3">
                   <Crown className="text-brand-orange" size={24} strokeWidth={1.1} aria-hidden="true" />
                   <p className="text-brand-orange text-xs font-semibold uppercase tracking-[0.3em]">

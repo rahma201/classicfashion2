@@ -213,6 +213,11 @@ export function GlobalPresenceMap() {
 
     mapRef.current = map;
 
+    const resizeObserver = new ResizeObserver(() => {
+      map.resize();
+    });
+    resizeObserver.observe(mapContainerRef.current);
+
     map.dragRotate.disable();
     map.touchZoomRotate.disableRotation();
     map.scrollZoom.disable();
@@ -381,6 +386,7 @@ export function GlobalPresenceMap() {
     });
 
     return () => {
+      resizeObserver.disconnect();
       popupRef.current?.remove();
       map.remove();
       mapRef.current = null;
@@ -436,7 +442,7 @@ export function GlobalPresenceMap() {
 
             <div
               ref={mapContainerRef}
-              className="relative z-0 h-[340px] w-full sm:h-[460px] lg:h-[560px]"
+              className="relative z-0 aspect-21/10 w-full lg:aspect-auto lg:h-140"
               aria-label="Interactive dark world map showing Classic Fashion global presence from Jordan to USA, Egypt, China, India, and Bangladesh"
             />
 
